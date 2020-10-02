@@ -1,4 +1,4 @@
-package prework;
+package prework.zmienne;
 
 import org.w3c.dom.ls.LSOutput;
 
