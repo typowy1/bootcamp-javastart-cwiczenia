@@ -1,6 +1,6 @@
 package prework.programowanieobiektowe.klasyiobiektyappfilmyiksiazki;
 
-public class Person {
+public class PersonFromMovieAndBookApp {
     String firstName;
     String lastName;
     int birthYear;
