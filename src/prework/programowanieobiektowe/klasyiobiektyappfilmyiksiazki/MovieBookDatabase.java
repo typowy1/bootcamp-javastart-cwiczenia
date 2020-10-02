@@ -7,7 +7,7 @@ public class MovieBookDatabase {
         movie1.title = "Forest Gump";
         movie1.year = 1994;
         movie1.oscars = true;
-        movie1.director = new Person(); // po director będziemy mogli wejsć do pól z person
+        movie1.director = new PersonFromMovieAndBookApp(); // po director będziemy mogli wejsć do pól z person
         movie1.director.firstName = "Robert";
         movie1.director.lastName = "Zemeckis";
         movie1.director.birthYear = 1951;
@@ -19,7 +19,7 @@ public class MovieBookDatabase {
         Book book1 = new Book();
         book1.title = "Ojciec Chrzestny";
         book1.pages = 300;
-        book1.author = new Person();
+        book1.author = new PersonFromMovieAndBookApp();
         book1.author.firstName = "Tomasz";
         book1.author.lastName = "Kowalski";
         book1.author.birthYear = 1564;
