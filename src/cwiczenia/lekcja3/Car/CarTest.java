@@ -21,5 +21,6 @@ public class CarTest {
         System.out.println("Zmniejszamy prędkość!");
         carController.decreaseSpeed(car1, 70);
         car1.show();
+        r
     }
 }
