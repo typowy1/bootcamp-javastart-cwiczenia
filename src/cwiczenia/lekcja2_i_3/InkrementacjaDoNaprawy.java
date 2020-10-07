@@ -1,4 +1,4 @@
-package cwiczenia.lekcja2;
+package cwiczenia.lekcja2_i_3;
 
 public class InkrementacjaDoNaprawy {
 
