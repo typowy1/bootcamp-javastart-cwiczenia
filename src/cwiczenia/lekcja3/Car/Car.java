@@ -6,6 +6,9 @@ public class Car {
     int power;
     int currentSpeed;
 
+    Car() {
+    } // konstruktor domyślny dobrze jak jest w klasie
+
     Car(String nam, int pow, int spee) {
         name = nam;
         power = pow;
