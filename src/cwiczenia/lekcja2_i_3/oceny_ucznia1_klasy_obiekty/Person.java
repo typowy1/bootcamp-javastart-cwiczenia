@@ -1,4 +1,4 @@
-package cwiczenia.lekcja2.oceny_ucznia1_klasy_obiekty;
+package cwiczenia.lekcja2_i_3.oceny_ucznia1_klasy_obiekty;
 
 public class Person {
     String firstName;

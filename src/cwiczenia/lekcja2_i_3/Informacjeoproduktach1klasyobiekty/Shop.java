@@ -1,4 +1,4 @@
-package cwiczenia.lekcja2.Informacjeoproduktach1klasyobiekty;
+package cwiczenia.lekcja2_i_3.Informacjeoproduktach1klasyobiekty;
 
 public class Shop {
     public static void main(String[] args) {
