@@ -9,6 +9,7 @@ public class While {
     // nadają się idealnie do wczytywania plików, źródeł stron internetowych
 
     //while
+
 //dopóki warunek jest prawdziwy powtarzaj kod w pętli.
     //Brzmi to podobnie jak przy pętli for, jednak różnica jest taka, że ponieważ nie występuje tutaj jawny licznik,
     // to ilość przebiegów pętli będzie zazwyczaj uzależniona od jakiegoś warunku uwzględniającego czynnik zewnętrzny - np. dane wczytane od użytkownika lub z pliku.
