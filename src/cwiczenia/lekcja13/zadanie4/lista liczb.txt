@@ -1,0 +1,9 @@
+Lista liczb
+Treść zadania
+
+Stwórz listę, która będzie przechowywała liczby typu Double. Wprowadź od użytkownika 10 liczb i zapisz je w liście. Wyświetl na ekranie:
+
+    elementy listy w kolejności odwrotnej niż kolejność w jakiej zostały dodane
+    sumę elementów na parzystych indeksach listy
+    iloczyn elementów na nieparzystych indeksach listy
+    największy element zapisany w liście

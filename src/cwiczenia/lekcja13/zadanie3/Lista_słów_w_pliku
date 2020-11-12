@@ -1,0 +1,8 @@
+Treść zadania
+
+W pliku words.txt zapisz dowolną liczbę słów. Każde słowo powinno znajdować się w nowym wierszu.
+Wczytaj wszystkie słowa z pliku do listy, a następnie zdefiniuj poniższe metody.
+
+    metoda przyjmuje listę napisów i zwraca najdłuższy wyraz.
+    metoda przyjmuje listę napisów i zwraca najkrótszy wyraz.
+    metoda zlicza sumę długości wszystkich wyrazów (łączną liczbę znaków).
