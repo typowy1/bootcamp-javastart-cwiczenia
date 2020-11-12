@@ -1,0 +1,82 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-32-listy/lekcja/java-podstawy-kolekcje-listy-arraylist-i-linkedlist
+
+Listy pozwalają na przechowywanie informacji w uporządkowanej i indeksowanej kolejności. Dzięki tym cechom, a także
+faktowi, że ich pojemność jest niemal nieograniczona (ograniczeniem jest wielkość wartości int, oraz ewentualna ilość
+pamięci maszyny wirtualnej), są one świetnym sposobem na zastąpienie tablic w większości przypadków. Pamiętaj jednak,
+że mimo wszystko tablic nie należy w tym momencie przekreślać. W aplikacjach wymagających dużej wydajności i szybkiego
+dostępu do danych, tablice nadal mogą okazać się najlepszym wyborem.
+
+ArrayList (listy tablicowe)
+
+Ponieważ klasy kolekcji są w Javie generyczne, to deklaracja ArrayListy będzie wyglądała następująco:
+
+ArrayList<Typ_Obiektowy> nazwaListy = new ArrayList<>(opcjonalny_domyślny_rozmiar);
+
+Rozmiar tablicy powinniśmy zadeklarować na inny niż domyślny przede wszystkim w sytuacji gdy wiemy, że na pewno będzie ona
+przechowywała dużo więcej obiektów - unikniemy wtedy potencjalnego spowolnienia związanego z rozszerzaniem wewnętrznej tablicy.
+
+ Najważniejsze z metod w tej klasie to:
+
+    add(E e) - dodaje element zgodny z zadeklarowanym typem generycznym do kolekcji. Pozwala na dodawanie wartości null oraz powtarzających się elementów,
+    addAll(Collection c) - dodaje wszystkie elementy z innej kolekcji do listy (kopie referencji),
+    clear() - usuwa wszystkie elementy z listy,
+    get(int index) - zwraca element pod podanym indeksem. Podobnie jak przy tablicach indeksowanie jest od 0. Metoda może generować wyjątek ArrayIndexOutOfBoundsException,
+    remove(int index) - usuwa element z indeksu podanego jako parametr,
+    remove(Object o) - usuwa pierwsze wystąpienie obiektu, dla którego metoda equals() zwróci true,
+    sort(Comparator c) - sortuje listę zgodnie z przekazanym komparatorem,
+    size() - zwraca rozmiar listy. Działanie analogiczne do właściwości length tablicy,
+    (pełną listę metod znajdziesz w dokumentacji)
+
+    Podobnie jak przy tablicach indeksowanie jest od 0
+
+Listy wiązane (LinkedList)
+
+Listy wiązane w odróżnieniu od list tablicowych do wewnętrznej reprezentacji danych nie wykorzystują tablic, lecz obiekty
+dodatkowej klasy wewnętrznej, które opakowują, każdy dodawany obiekt i tworzą powiązanie z poprzednim elementem.
+
+W Javie klasa LinkedList jest zaimplementowana jako lista podwójnie wiązana, tzn., że każdy jej element przechowuje referencję do elementu poprzedzającego oraz do swojego następnika oraz przechowywaną wartość (referencję na obiekt). Jeżeli mamy więc listę przechowującą 100 obiektów, to aby pobrać obiekt zapisany na 49 miejscu, musimy przejść po elementach 0>1>2>3>...>49, a w przypadku, gdy obiekt jest bliżej końca, konieczne jest przejście ścieżki odwrotnej, np. 99>98>97>...>65. Z tego powodu operacje wyszukiwania, czy też generalnie odczytu danych z środka listy wiązanej nie są zbyt efektywne. Szybciej niż w przypadku ArrayListy działa natomiast wstawianie i usuwanie elementów z listy, ponieważ nie ma tutaj konieczności przesuwania całego zbioru danych - wystarczy zaktualizować następniki i poprzedniki odpowiednich elementów (dwie referencje).
+
+W LinkedList oprócz metod wymienionych przy ArrayList, znajdziemy też zdefiniowane dodatkowe metody, które wynikają z tego w jaki sposób przechowywane są w niej elementy:
+
+    addFirst(E e) / removeFirst() - dodanie lub usunięcie elementu z początku listy,
+    addLast(E e) / removeLast() - dodanie lub usunięcie elementu z końca listy,
+    (pełną listę metod znajdziesz w dokumentacji).
+
+Deklaracja, inicjalizacja i operacje na liście tego typu są analogiczne jak na obiekcie klasy ArrayList.
+
+
+    ArrayList - implementacja tablicowa
+
+    LinkedList - implementacja wiązana
+
+LinkedList – jest to podwójnie powiązana lista. Każdy element tej listy jest osobnym obiektem, który posiada referencję
+do poprzedniego i następnego elementu listy.
+mplementacja ta pozawala dodawać i usuwać elementy w stałym czasie (dodawanie elementu w dowolnym miejscu listy jest
+bardzo szybkie), ale losowy dostęp do elementów jest sekwencyjny (żeby dostać się do odpowiedniego elementu, trzeba
+iterować po elementach listy).
+
+ArrayList – jest to podstawowa implementacja listy w Javie. Można też ją określić jako samo-rozszerzalną tablicę, ponieważ
+jej implementacja bazuje na tablicy, która jest powiększana wraz ze wzrostem rozmiaru listy. Dzięki temu, jest to
+najwydajniejsza implementacja listy w Javie (w bibliotece standardowej).
+Charakteryzuje się szybkim losowym dostępem do poszczególnych elementów poprzez metodę get(int index).
+
+Główna różnicą pomiędzy tymi listami jest oczywiście implementacja. ArrayList oparta jest na tablicy, przez co jest
+bardziej wydajna.
+
+LinkedList jest oparta na powiązanych między sobą obiektach, przez co jest o wiele bardziej pamięciożerna. Dla każdego
+elementu w liście jest utworzony obiekt Node, który go przechowuje. Wraz ze zwiększeniem liczby elementów w liście
+znacząco wzrasta też zużycie pamięci.
+
+Większość operacji wykonywanych na listach to dodawanie i odczytywanie. Jeśli chodzi o dodawanie elementów do ArrayList,
+to jest ono tak samo wydajne jak w LinkedList, gdy dodajemy elementy na końcu listy.
+
+Jeśli chodzi o odczytywanie losowych elementów poprzez metodę get(int index), to w ArrayList jest to zrealizowane poprzez
+odczytywanie konkretnego indexu w tablicy
+
+Natomiast w LinkedList metoda get(int index) działa sekwencyjnie, iteruje wszystkie (maksymalnie połowę listy) elementy
+do danego indeksu
+
+Używając różnych implementacji list trzeba szczegółowo znać ich zalety i wiedzieć w jakich sytuacjach sprawdzają się
+najlepiej. Da Ci to dodatkowe możliwości i pozwoli na bardziej elastycznie programowanie swoich aplikacji.
+Natomiast jeśli masz jakieś wątpliwości jakiej listy używać, powinieneś zawsze skorzystać z ArrayList,
+która sprawdza się w 99,9% przypadków.

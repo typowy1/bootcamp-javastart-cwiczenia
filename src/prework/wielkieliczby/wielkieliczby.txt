@@ -1,0 +1,26 @@
+
+
+    https://javastart.pl/kurs/java/java-podstawy-temat-28-typy-opakowuj%C4%85ce/lekcja/java-podstawy-wielkie-liczby
+
+    Klasa BigDecimal służy do reprezentowania dokładnych liczb zmiennoprzecinkowych, z niegraniczoną precyzją, reprezentuje dokładne wartosci liczb a nie ich przybliżenia
+    Klasa BigInteger pozwala przechowywać informacje o ogromnych liczbach całkowitoliczbowych
+
+Obie klasy są typami obiektowymi, nie możemy więc na nich wykonywać bezpośrednio obliczeń za pomocą prostych operatorów
+(+, -, *, /), nie działa w ich przypadku mechanizm autoboxingu i unboxingu - zawsze musimy posługiwać się metodami.
+
+W celu wykonania obliczeń na liczbach, należy posługiwać się metodami:
+
+    add() - dodawanie
+    subtract() - odejmowanie
+    multiply() - mnożenie
+    divide() - dzielenie
+
+    każda z nich przyjmuje wartość typu BigInteger lub BigDecimal.
+
+    Kiedy stosować klasy BigDecimal/BigInteger
+
+    Używaj ich przede wszystkim wtedy, kiedy jest to niezbędne, czyli np. w przypadku obliczeń finansowych, gdzie precyzja jest niezbędna. Pamiętaj jednak, że pomimo tego, że są to klasy o dużych możliwościach to są to obiekty i każde działanie na nich sprawia, że tworzenie nowych obiektów, czy obliczenia są dużo bardziej kosztowne obliczeniowo, a tym samym mogą odbijać się na wydajności Twojej aplikacji.
+
+    W większości zastosowań zdecydowanie powinny Ci wystarczyć liczby typów podstawowych.
+
+    dostępne są tez stałe ONE, TWO, ZERO

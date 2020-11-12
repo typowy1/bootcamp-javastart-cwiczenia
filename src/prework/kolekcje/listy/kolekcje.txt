@@ -1,0 +1,2 @@
+wyspecjalizowane struktury danych które nie muszą mieć z góry określonego rozmiaru i dodatkowo mogą wprowadzać użyteczne
+funkcjonalności.
