@@ -1,0 +1,30 @@
+Dokładne zestawienie sprzedaży
+Treść zadania
+
+Napisz program który będzie przechowywał w liście zestawienie sprzedaży z obiektami zawierającymi: nazwę sprzedanego towaru/usługi, cenę netto, stawkę VAT (np. "telewizor LG", 3.2, 23) i wypisuje:
+
+    Sumę sprzedaży netto.
+    Sumę podatku VAT.
+    Sumę sprzedaży brutto.
+
+Do obliczeń i przechowywania kwot wykorzystaj klasę BigDecimal.
+
+Dla przykładowych obiektów:
+
+Telewizor, 100zł, 23% VAT;
+Praliny, 40zł, 8% VAT;
+Thinking in Java, 120zł, 5% VAT
+
+powinniśmy w wyniku otrzymać:
+
+Sprzedaż Netto: 260zł
+Suma podatku VAT ze sprzedaży: 32,20
+Suma sprzedaży Brutto: 292,20
+
+
+
+* Dodaj wczytywanie danych z pliku CSV, który przechowuje dane w postaci:
+
+produkt;cena_netto;stawka_vat
+
+Obliczone statystyki zapisz w osobnym pliku.

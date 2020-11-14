@@ -1,0 +1,7 @@
+Autoboxing i autounboxing
+treść zadania
+
+    Wczytaj od użytkownika dwie liczby w postaci Stringów
+    Przekształć te liczby do postaci obiektów typu Integer
+    Dokonaj autounboxingu i przypisz liczby do zmiennych typu int
+    Dodaj liczby i wyświetl je na ekranie

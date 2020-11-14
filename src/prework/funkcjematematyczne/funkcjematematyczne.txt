@@ -1,0 +1,26 @@
+Funkcje matematyczne
+
+    W programowaniu często wykonujemy różne obliczenia, np. podnosimy liczby do potęgi, albo obliczamy z nich pierwiastki.
+    Byłoby mało praktyczne, gdyby trzeba za każdym razem tworzyć metody odzwierciedlające takie funkcje, albo gdyby trzeba
+    do projektu za każdym razem dołączać jakieś zewnętrzne biblioteki. Klasa Math zdefiniowana w JDK zawiera najpopularniejsze
+    metody do obliczeń matematycznych oraz kilka stałych takich jak liczba PI, czy liczba E.
+
+    Wszystkie metody w tej klasie zdefiniowane są jako statyczne, co oznacza, że nie musisz tworzyć obiektu tego typu,
+    aby je wywołać. Kilka przykładów najbardziej użytecznych metod to:
+
+        abs() - przyjmuje dowolną liczbę i zwraca jej wartość bezwzględną,
+        floor() - przyjmuje liczbę typu double i zwraca w wyniku jej podłogę, czyli wartość całkowitą, pozbawioną części
+        dziesiętnej,
+        max() / min() - przyjmują dwie liczby dowolnego typu i zwracają większą lub mniejszą z nich,
+        pow() - przyjmuje dwie wartości typu double, podstawę potęgi oraz jej wykładnik. Zwraca wynik potęgowania,
+        round() - przyjmuje wartość typu double i zaokrągla ją do najbliższej liczby całkowitej typu long,
+        sqrt() - przyjmuje wartość typu double i zwraca pierwiastek kwadratowy tej liczby,
+
+    Oprócz tego znajdziesz tam także sporo innych metod, które pozwolą Ci np. obliczyć funkcje trygonometryczne,
+    albo zamienić stopnie na radiany i odwrotnie.
+
+    Ważne jest to, że metody dedykowane są dla liczb typów prostych. Jeżeli chcesz wykonać operacje na liczbach
+    reprezentowanych przez typy BigDecimal, albo BigInteger, to wykorzystaj metody z tych właśnie klas.
+
+    Jeżeli w swoim programie potrzebujesz wartości PI, to też zamiast definiować ją za każdym razem jako 3.14,
+    lepiej będzie odwołać się do stałej Math.PI.
