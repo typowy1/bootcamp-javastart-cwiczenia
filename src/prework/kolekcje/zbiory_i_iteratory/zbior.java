@@ -37,6 +37,7 @@ public class zbior {
         //defoltowo, dla streeng kolejnosc liter, dla np integera to rosnace liczby
 //        Set<String> set2 = new TreeSet<>();
         TreeSet<String> set2 = new TreeSet<>();
+//        przy tree set w klasie obiektu powinniśmy implementować interface comparable lub zrobić to w konstruktorze
         //dodane do zbioru
 
         set2.add("Ania");

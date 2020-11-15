@@ -1,0 +1,61 @@
+Zbiory w Javie (klasy implementujące interfejs Set) są swego rodzaju odzwierciedleniem matematycznej ich definicji,
+zgodnie z którą jest to nieuporządkowany zestaw różnych obiektów.
+
+****Najważniejszą cechą zbiorów jest to, że służą one do przechowywania unikalnych obiektów.
+ Jeżeli spróbujesz dodać do nich dwa razy tę samą wartość, to w kolekcji nie zobaczysz duplikatów. Ponieważ zbiory, tak jak inne kolekcje,
+mogą przechowywać tylko obiekty, to musisz zagwarantować, że posiadają one poprawnie zaimplementowaną metodę equals() i
+hashCode(). To właśnie one są wykorzystywane do sprawdzania unikalności. Błędna implementacja lub brak tych dwóch metod
+sprawi, że zbiory mogą zachowywać się w nieoczekiwany sposób i duplikaty będą dopuszczalne.
+
+
+HashSet
+
+HashSet jest zbiorem nieuporządkowanym i nieposortowanym, nie posiada też nawet specjalnych metod takich jak first(), czy last(), bo nie mamy żadnej gwarancji co do kolejności w jakiej przechowywane są obiekty. Jedyną, ale dużą jego zaletą jest to, że operacje dodawania, usuwania i wyszukiwania są w niej bardzo szybkie. Zbiór typu HashSet pozwala także w odróżnieniu na umieszczenie wartości null.
+
+Najważniejsze metody, które znajdziesz w interfejsie Set, a więc także w klasie HashSet, która ten interfejs implementuje to:
+
+    add(E e) - dodaje do zbioru obiekt, który jest zgodny ze typem zbioru, przy próbie dodania duplikatu, nowo dodawany obiekt zostanie zignorowany,
+    contains(E e) - sprawdza, czy w zbiorze znajduje się podany jako argument element,
+    remove(E e) - usuwa ze zbioru element podany jako argument,
+    size() - zwraca ilość elementów w tym zbiorze,
+    (pełną listę metod znajdziesz w dokumentacji).
+
+Nie znajdziesz tutaj metody typu get() znanej z list, więc iterowanie za pomocą tradycyjnej pętli for, czy while, nie będzie możliwe tak jak poprzednio. Wynika to z tego, że sposób przechowywania elementów w zbiorze nie jest taki w jakim te elementy umieszczaliśmy. Jeśli chcesz iterować po wszystkich elementach zbioru (abstrahując od kolejności) to musisz skorzystać z Iteratora, któremu poświęcimy osobną lekcję, lub z pętli for each.
+
+HashSet jak sama nazwa wskazuje korzysta pod spodem z tablic mieszających (haszowanych), a one wymagają do poprawnego, wydajnego działania metody hashCode(). To między innymi tutaj wymagane jest spełnienie kontraktu pomiędzy metodami equals() i hashCode(), który dla przypomnienia mówi o tym, że jeśli metoda equals() dla dwóch obiektów zwraca true, to metoda hashCode() wywołana na tych obiektach powinna zwrócić identyczną wartość. Jeżeli kontrakt ten nie będzie spełniony, to HashSet może nie działać poprawnie i np. dopuszczać do przechowywania duplikatów.
+
+Stwórzmy klasę Person z metodami equals() i hashCode(), a następnie przetestujmy dodawanie kilku obiektów do zbioru typu HashSet.
+
+
+LinkedHashSet
+LinkedHashSet jest zbiorem bardzo podobnym do HashSet, jednak dzięki dodatkowej wewnętrznej reprezentacji w postaci listy wiązanej, dodając kolejne elementy do zbioru uzyskujemy pewność, że w tej samej kolejności będziemy mogli po nich iterować. W przypadku zwykłego HashSet iteracja odbywa się w przypadkowej kolejności. Tak samo jako w pozostałych zbiorach, do iteracji trzeba jednak wykorzystać iterator lub pętlę for each.
+
+
+Zbiory uporządkowane TreeSet
+
+Jeżeli ważne jest dla Ciebie, aby elementy dodawane do zbioru były automatycznie ustawiane w naturalnym porządku (lub zdefiniowanym przez komparator) to TreeSet będzie dobrym wyborem. Wewnętrzna reprezentacja TreeSet w Javie to drzewo czerwono-czarne. Raczej nie musi cię to specjalnie interesować, ale gdy w przyszłości przyjdzie ci zgłębić wiedzę dotyczącą struktur danych, to będziesz musiał do tego zagadnienia wrócić.
+
+TreeSet posiada dodatkowe metody, które wynikają z tego, że elementy w nim są posortowane:
+
+    first() / last() - zwraca pierwszy lub ostatni element zbioru (zgodny z porządkiem sortowania).
+
+
+Zbiory uporządkowane TreeSet
+
+Jeżeli ważne jest dla Ciebie, aby elementy dodawane do zbioru były automatycznie ustawiane w naturalnym porządku (lub zdefiniowanym przez komparator) to TreeSet będzie dobrym wyborem. Wewnętrzna reprezentacja TreeSet w Javie to drzewo czerwono-czarne. Raczej nie musi cię to specjalnie interesować, ale gdy w przyszłości przyjdzie ci zgłębić wiedzę dotyczącą struktur danych, to będziesz musiał do tego zagadnienia wrócić.
+
+TreeSet posiada dodatkowe metody, które wynikają z tego, że elementy w nim są posortowane:
+
+    first() / last() - zwraca pierwszy lub ostatni element zbioru (zgodny z porządkiem sortowania).
+
+    Jeżeli chcesz zmienić kolejność w jakiej sortowane są dodawane do TreeSetu obiekty, to podczas jego tworzenia możesz przekazać do konstruktora odpowiedni obiekt komparatora.
+
+
+Podsumowanie zbiorów
+
+    Zbiorów, czyli klas implementujących interfejs Set używaj wtedy, kiedy chcesz zapewnić, że przechowujesz tylko unikalne obiekty.
+    Zbiory najczęściej wykorzystuje się wtedy, kiedy nie obchodzi nas kolejność dodawania obiektów i odwoływanie się do nich po indeksach, ani iterowanie po całym zbiorze, ale liczy się dla nas szybkie dodawanie, usuwanie i wyszukiwanie wartości.
+    Klasy TreeSet używaj wtedy, kiedy zależy ci na porządkowaniu dodawanych elementów w kolejności naturalnego porządku.
+    Klasy HashSet używaj wtedy, kiedy liczy się dla ciebie praktycznie tylko szybkość dodawania, usuwania i wyszukiwania obiektów w zbiorze, ale nie liczy się dla Ciebie kolejność iterowania po nich.
+    Klasy LinkedHashSet użyj w sytuacji podobnej do HashSet, jednak z dodatkową zaletą w postaci możliwości zachowania porządku elementów.
+    Do iterowania po zbiorze konieczne jest zastosowanie iteratora lub pętli for-each.
