@@ -1,0 +1,10 @@
+Treść zadania
+
+Zdefiniuj prostą aplikację do obsługi kolejki w przychodni. Stwórz klasę Person (imię, nazwisko, pesel).
+W osobnej klasie zdefiniuj kolejkę do której dodasz kilka osób. Następnie stwórz pętlę, która pobierze z kolejki
+każdą osobę po kolei i wyświetli na ekranie informację jak poniżej.
+
+Pacjent xxx proszony do gabinetu.
+Pacjent xxx obsłużony.
+Pacjent uuu proszony do gabinetu.
+Pacjent uuu obsłużony.

@@ -1,0 +1,7 @@
+Zapisz w pliku tekstowym co najmniej 10 liczb całkowitych (jedna liczba na wiersz). Przynajmniej kilka z tych liczb powinno się powtarzać. Liczby nie powinny być posortowane, postaraj się je wymieszać (liczby dodatnie, ujemne, bez określonej kolejności).
+
+W programie wczytaj wszystkie liczby z pliku i wyświetl:
+
+    liczbę wszystkich liczb, jaka była w pliku
+    liczbę unikalnych liczb, jaka była w pliku
+    najmniejszą i największą liczbę jaka była w pliku

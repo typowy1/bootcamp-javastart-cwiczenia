@@ -1,0 +1,9 @@
+Zbiór unikalnych napisów
+Treść zadania
+
+Napisz program, w którym wczytasz od użytkownika 10 napisów. Wyświetl na ekranie:
+
+    liczbę unikalnych napisów wprowadzonych przez użytkownika
+    unikalne elementy w kolejności alfabetycznej (zignoruj ewentualne błędy wynikające z występowania polskich liter)
+
+Do rozwiązania zadania wykorzystaj klasy Set, HashSet lub TreeSet.
