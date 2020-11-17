@@ -1,0 +1,5 @@
+Pod adresem https://grouplens.org/datasets/movielens/ znajdziesz pliki csv, w których zapisane są różne informacje o filmach (pobierz plik ml-latest-small.zip (size: 1 MB)).
+
+Wykorzystując mapy zaprezentuj takie statystyki jak:
+
+    Liczba filmów w każdej kategorii. Kategorie wyświetl w kolejności alfabetycznej.
