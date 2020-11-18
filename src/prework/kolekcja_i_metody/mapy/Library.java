@@ -1,4 +1,4 @@
-package prework.kolekcje.mapy;
+package prework.kolekcja_i_metody.mapy;
 
 import java.util.HashMap;
 import java.util.Map;

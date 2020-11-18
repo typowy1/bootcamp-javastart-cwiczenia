@@ -1,11 +1,8 @@
-package prework.kolekcje.zbiory_i_iteratory;
-
-import prework.petla_while_do_while.While;
+package prework.kolekcja_i_metody.zbiory_i_iteratory;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Library {
 

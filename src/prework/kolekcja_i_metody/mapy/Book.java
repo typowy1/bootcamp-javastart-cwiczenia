@@ -1,16 +1,14 @@
-package prework.kolekcje.zbiory_i_iteratory;
+package prework.kolekcja_i_metody.mapy;
 
 import java.util.Objects;
 
 public class Book {
     private String title;
-    private int pages;
-    private int amount;
+    private int isbn;
 
-    public Book(String title, int pages, int amount) {
+    public Book(String title, int isbn) {
         this.title = title;
-        this.pages = pages;
-        this.amount = amount;
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -21,28 +19,19 @@ public class Book {
         this.title = title;
     }
 
-    public int getPages() {
-        return pages;
+    public int getIsbn() {
+        return isbn;
     }
 
-    public void setPages(int pages) {
-        this.pages = pages;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "title='" + title + '\'' +
-                ", pages=" + pages +
-                ", amount=" + amount +
+                ", isbn=" + isbn +
                 '}';
     }
 
@@ -51,14 +40,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return pages == book.pages &&
-                amount == book.amount &&
+        return isbn == book.isbn &&
                 Objects.equals(title, book.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, pages, amount);
+        return Objects.hash(title, isbn);
     }
-
 }

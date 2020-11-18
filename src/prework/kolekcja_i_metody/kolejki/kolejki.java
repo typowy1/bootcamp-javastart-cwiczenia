@@ -1,7 +1,4 @@
-package prework.kolekcje.kolejki;
-
-import java.util.LinkedList;
-import java.util.Queue;
+package prework.kolekcja_i_metody.kolejki;
 
 public class kolejki {
 

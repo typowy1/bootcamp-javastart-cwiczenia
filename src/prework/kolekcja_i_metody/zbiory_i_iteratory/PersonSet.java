@@ -1,4 +1,4 @@
-package prework.kolekcje.zbiory_i_iteratory;
+package prework.kolekcja_i_metody.zbiory_i_iteratory;
 
 import java.util.HashSet;
 

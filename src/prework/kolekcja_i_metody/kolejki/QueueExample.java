@@ -1,4 +1,4 @@
-package prework.kolekcje.kolejki;
+package prework.kolekcja_i_metody.kolejki;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;

@@ -1,8 +1,4 @@
-package prework.kolekcje.zbiory_i_iteratory;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+package prework.kolekcja_i_metody.zbiory_i_iteratory;
 
 public class Iteratory {
     public static void main(String[] args) {

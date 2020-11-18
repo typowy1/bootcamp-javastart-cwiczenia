@@ -1,0 +1,16 @@
+Wstęp
+
+Podobnie jak w przypadku tablic, tak również w przypadku wszystkich typów kolekcji istnieje pewien zbiór operacji, który jest powtarzalny. W przypadku tablic wykorzystywaliśmy klasę Arrays do operacji takich jak sortowanie, czy kopiowanie. Jej odpowiednikiem przy kolekcjach jest klasa Collections (zwracaj uwagę na s na końcu).
+
+Wśród najciekawszych metod, które nam ona udostępnia można wyróżnić:
+
+    binarySearch() - w posortowanej liście wyszukuje element podany jako drugi argument,
+    copy() - pozwala skopiować wszystkie elementy jednej listy do innej,
+    fill() - podmienia wszystkie elementy podanej listy obiektem przekazanym jako drugi argument,
+    frequency() - zlicza liczbę wystąpień w kolekcji zadanego obiektu,
+    min() / max() - zwraca najmniejszą lub największą wartość w kolekcji (zgodnie z naturalnym porządkiem lub przekazanym komparatorem),
+    reverse() - odwraca kolejność elementów w liście,
+    shuffle() - miesza elementy w liście,
+    swap() - zamienia miejscami dwa elementy w liście.
+
+Dodatkowo warto wiedzieć, że w klasie Arrays istnieje także bardzo użyteczna metoda przekształcająca zadaną tablicę w listę. Jest to metoda Arrays.asList().

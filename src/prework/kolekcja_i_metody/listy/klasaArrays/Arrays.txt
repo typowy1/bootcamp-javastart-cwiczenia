@@ -1,0 +1,15 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-30-klasa-arrays/lekcja/java-podstawy-operacje-na-tablicach-klasa-arrays
+
+Wstęp
+
+Pisząc dowolne programy bardzo często wykorzystuje się w nich tablice do przechowywania kolekcji danych. Sprawia to, że niemal w każdym projekcie musielibyśmy definiować metody, które pozwolą nam je sortować, kopiować, wyświetlać czy wyszukiwać w nich jakieś informacje i byłoby to co najmniej męczące.
+
+Na szczęście w Javie niemal na początku jej istnienia powstał pakiet java.utils, a w nim wygodna klasa Arrays do wykonywania podstawowych operacji na tablicach, które wymieniono powyżej. Przykładowe metody, które tam znajdziemy to:
+
+    sort() - sortuje elementy zgodnie z ich naturalnym porządkiem,
+    binarySearch() - wyszukuje w tablicy podaną wartość, za pomocą wyszukiwania binarnego. Wymaga, aby tablica była posortowana (np. metodą sort()),
+    copyOf() - pozwoli skopiować całość lub fragment tablicy, do innej tablicy. W przypadku typów obiektowych kopiowane są referencje (nie są tworzone kopie obiektów), więc modyfikując obiekty w jednej tablicy, zmodyfikujemy także obiekty w utworzonej kopii,
+    equals() - porównuje równość tablic, jednak nie jest sprawdzana równość strukturalna poszczególnych obiektów, a jedynie równość ich referencji. Jeśli chcesz sprawdzić równość strukturalną dwóch tablic, wykorzystaj metodę deepEquals(),
+    fill() - pozwala wypełnić całą tablicę jedną, podaną wartością.
+
+Niektóre z wymienionych metod posiadają tylko wersję generyczną dla tablic typów obiektowych, ale niektóre posiadają też przeciążone wersje dla tablic typów prostych.
