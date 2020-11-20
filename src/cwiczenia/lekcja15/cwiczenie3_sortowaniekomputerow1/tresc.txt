@@ -1,0 +1,15 @@
+Treść zadania
+
+Komputer opisywany jest poprzez nazwę (name), prędkość procesora (cpu), ilość pamięci ram (memory). Stwórz listę przechowującą przynajmniej cztery obiekty reprezentujące komputer takie, że:
+
+    jeden z obiektów jest całkowicie unikalny
+    kolejne dwa posiadają taką samą nazwę i procesor, ale różną ilość pamięci
+    ostatni posiada taką samą nazwę jak dwa poprzednie, ale wolniejszy procesor i większą ilość pamięci
+
+Posortuj listę:
+
+    po prędkości procesora
+    jeśli prędkość procesora jest taka sama, to uwzględnij ilość pamięci
+    jeśli ilość pamięci jest taka sama to uwzględnij nazwę w kolejności alfabetycznej
+
+Wyświetl posortowaną listę na ekranie

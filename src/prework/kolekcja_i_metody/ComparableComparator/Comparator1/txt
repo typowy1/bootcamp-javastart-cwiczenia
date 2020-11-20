@@ -1,0 +1,5 @@
+Co jednak w sytuacji, gdy chcielibyśmy posortować jakąś tablicę po nazwie produktu, a innym razem po nazwie producenta? Przedefiniowanie metody compareTo() i ponowna kompilacja programu za każdym razem raczej nie wchodzi w grę.
+
+Jeśli jednak spojrzymy na inną wersję metody Arrays.sort(), to zauważymy, że dostępna jest też taka, która przyjmuje tablicę, oraz drugi argument w postaci obiektu klasy implementującej interfejs Comparator (tzw. komparatora)
+
+Dzięki temu możemy zdefiniować kilka klas, które pozwolą nam określić różny porządek obiektów, które sortujemy. Jest to miejsce, w którym wygodne jest zastosowanie statycznej klasy zagnieżdżonej lub klasy anonimowej (a od Javy 8 także wyrażenia lambda) w przypadku prostego porównania.

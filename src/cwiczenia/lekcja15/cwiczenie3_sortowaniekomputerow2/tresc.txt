@@ -1,0 +1,3 @@
+Przerób kod w taki sposób, aby komputery domyślnie były sortowane na podstawie nazwy (alfabetycznie). Zdefiniuj dwa dodatkowe komparatory, które pozwolą posortować je po prędkości procesora lub ilości pamięci ram.
+
+Stwórz tablicę z przynajmniej trzema różnymi komputerami. Poproś użytkownika o podanie kryterium sortowania (nazwa, cpu, ram), posortuj tablicę i wyświetl ją na ekranie.

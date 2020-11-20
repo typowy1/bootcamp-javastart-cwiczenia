@@ -1,0 +1,10 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-31-comparable-i-comparator/lekcja/java-podstawy-interfejsy-comparable-i-comparator
+
+    Jakie możliwości dają interfejsy Comparable i Comparator,
+    w jaki sposób sortować tablice obiektów (nie typów prostych ani obiektów typu String).
+
+    Interfejs Comparable
+
+    Jeżeli zależy nam jedynie na tym, aby był ustalony jeden, naturalny porządek elementów i nie potrzebujemy sortowania według kilku różnych kryteriów, np. rosnąco, malejąco, po imieniu lub po nazwisku itp., to najlepszym rozwiązaniem będzie zaimplementować w klasie interfejs Comparable.
+
+    Zdefiniuj klasę Product, która posiada atrybuty takie jak producer (producent), name (nazwa produktu) i price (cena produktu). Wygeneruj metodę toString(), która wyświetli dane w kolejności nazwa, producent, cena i dodaj do sygnatury klasy informację o implementowaniu interfejsu Comparable (implements Comparable).

@@ -1,4 +1,4 @@
-package prework.kolekcja_i_metody.listy.klasaCollections;
+package prework.kolekcja_i_metody.klasaCollections;
 
 import java.util.Arrays;
 import java.util.Collection;

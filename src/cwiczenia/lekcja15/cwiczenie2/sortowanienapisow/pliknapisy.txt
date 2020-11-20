@@ -1,0 +1,9 @@
+Treść zadania
+
+Stwórz listę z 10 napisami, z których część będzie się powtarzała. Następnie wyświetl na ekranie:
+
+    nieposortowaną listę
+    posortowaną listę
+    listę posortowaną w odwrotnej kolejności
+    * liczbę wystąpień unikalnych elementów
+    * informację o tym jaki element powtarza się najczęściej
