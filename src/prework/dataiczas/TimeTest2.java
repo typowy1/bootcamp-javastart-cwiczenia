@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 public class TimeTest2 {
 
-//    LocalTime
+//    LocalTime klasa
 
     //ak jak w klasie Instant również tutaj znajdziemy metody takie jak isBefore() / isAfter(), a także użyteczny zestaw
     // metod typu plus i minus, które tak jak wspomnieliśmy pozwolą przesunąć czas.
@@ -14,12 +14,12 @@ public class TimeTest2 {
 
     public static void main(String[] args) throws InterruptedException {
 
-        LocalTime now = LocalTime.now();
+        LocalTime now = LocalTime.now(); // aktualna godzina, minuta i sekunda, do daty dodajemy jedną sekunde
 
         for (int i = 0; i < 10; i++) {
             System.out.println(now);
             now = now.plusSeconds(1);// now.plusSeconds(1) żeby zadziałało trzeba przypisać do zmiennej
-            Thread.sleep(1000);
+            Thread.sleep(1000);// usypiamy wątek na wskazany przedział czasowy
         }
 
 
