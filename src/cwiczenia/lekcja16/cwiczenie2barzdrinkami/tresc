@@ -1,0 +1,16 @@
+Treść zadania
+
+Prowadzimy bar, w którym sprzedajemy zarówno drinki bezalkoholowe jak i alkoholowe. Ponieważ nazwa drinka nie zawsze mówi, czy ma on alkohol, to tworzymy aplikację, która pozwoli to sprawdzić.
+
+Każdy drink posiada informację o nazwie, cenie oraz przypisany typ:
+
+    SOFT – bezalkoholowy,
+    SMOOTHIE – bezalkoholowy z samych owoców,
+    ALCOHOLIC – z alkoholem.
+
+Stwórz kolekcję, w której będą przechowywane dostępne w naszym barze drinki (wymyśl ich co najmniej kilka). Poproś użytkownika o podanie nazwy drinka. Jeżeli informacji o takim drinku nie ma w naszej bazie, to poinformuj o tym klienta. Jeżeli drink zostanie odnaleziony, to:
+
+    Jeżeli drink nie zawiera alkoholu, wyświetl cenę do zapłaty,
+    Jeżeli drink jest alkoholowy, to poproś użytkownika o podanie wieku.
+        Jeżeli wiek jest większy, bądź równy 18, to wyświetl cenę.
+        Jeżeli wiek jest mniejszy od 18, to wyświetl komunikat z odmową sprzedaży.
