@@ -1,0 +1,29 @@
+Stwórz program który będzie służył do obsługi zamówień przez sklep internetowy. Zamówienie posiada identyfikator, nazwę, cenę oraz stan. Stan zamówienia może być zastępujące:
+
+    złożone
+    przygotowane do wysyłki
+    w transporcie
+    zrealizowane
+    anulowane
+
+Tylko "złożone" i "przygotowane do wysyłki" zamówienia mogą być anulowane.
+
+Twoim zadaniem jest wczytanie listy zamówień z pliku oraz wyświetlenie ich w konsoli. Następnie użytkownik może wybrać jedną z opcji:
+
+1. Posortuj - powoduje możliwość wyboru atrybutu sortowania (nazwa, cena lub stan)
+
+2. Zmień stan zamówienia - powoduje możliwość wybrania zamówienia oraz zmianę jego stanu, np z "w transporcie" do "zrealizowane". Zwróć uwagę, żeby nie dało się anulować już wysłanych zamówień
+
+3. Dodaj zamówienie - powoduje możliwość zdefiniowania nowego zamówienia. Powinno mieć status "złożone"
+
+0. Koniec - wyjście z programu
+
+Punktacja:
+
+    wczytanie listy z pliku i sortowanie po nazwie oraz cenie - 1 pkt
+    obsługa zmian stanów zamówienia - 1 pkt
+    dodawanie zamówienia - 1 pkt
+    sortowanie po statusie zamówienia - dodatkowe 1 pkt
+
+
+
