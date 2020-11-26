@@ -1,0 +1,16 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-39-referencje-do-metod/lekcja/java-podstawy-referencje-do-metod
+
+Referencję do metody możemy przekazać na trzy różne sposoby:
+
+    Klasa::metodaStatyczna - przekazanie metody statycznej klasy,
+    obiekt::metodaInstancji - przekazanie metody niestatycznej - niezbędne jest wcześniejsze utworzenie obiektu,
+    Klasa::metodaInstancji - równoznaczne z wywołaniem metody w sposób x..method(y) - gdzie x i y są argumentami.
+
+Jeżeli w ramach wyrażenia lambda wywołujemy tylko pojedynczą metodę statyczną, to można ją bezpośrednio zastąpić referencją
+do tej metody. Zasugeruje Ci to nawet IntelliJ, podświetlając odpowiedni kod na żółto. Jeżeli klikniesz na taki kod i wciśniesz
+Alt + Enter, to pojawi się opcja "Replace lambda with method reference", czyli "Zastąp wyrażenie lambda referencją do metody".
+
+Argument postaci ComputerMethods::printComputerWithTemperature, czyli przekazanie referencji
+do metody oraz c -> printComputerWithTemperature(c), czyli przekazanie wyrażenia lambda, są sobie funkcjonalnie równoważne.
+Przekazując referencję do metody statycznej, zawsze musimy skorzystać z zapisu Klasa::nazwaMetodyStatycznej.
+Nawet jeżeli metoda znajduje się w klasie, w której aktualnie jesteśmy, to nie możemy pominąć podania nazwy klasy przed podwójnym dwukropkiem.
