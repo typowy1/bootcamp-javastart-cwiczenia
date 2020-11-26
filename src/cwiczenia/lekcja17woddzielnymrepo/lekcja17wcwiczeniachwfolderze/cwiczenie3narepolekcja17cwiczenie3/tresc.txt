@@ -2,6 +2,8 @@ cwiczenie na repo lekcja17cwiczenie3
 
 Link do zadania: http://git.javastart.pl/zadania/junit-1-41093890
 
+Rozwiązanie jest na folderze lekcja17cwiczenie3
+
     Ściągnij kod źródłowy aplikacji i zapoznaj się z nim. Są w nim 3 klasy modelowe: Book, Person oraz User. Obok nich znajdują się również dwie klasy które przetwarzają dane: FilteringMachine oraz FilteringMachineTwo.
     Uruchom testy w klasie FilteringMachineTest. Żaden z nich nie powinien zakończyć się pozytywnie. Popraw implementację metod w klasie FilteringMachine, tak, żeby testy przechodziły.
     Analogicznie uruchom testy w klasie FilteringMachineTwoTest. Żaden z nich nie powinien zakończyć się pozytywnie. Popraw implementację metod w klasie FilteringMachineTwo, tak, żeby testy przechodziły.
