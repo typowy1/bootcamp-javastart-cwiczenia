@@ -1,0 +1,19 @@
+
+https://javastart.pl/kurs/java/java-podstawy-temat-25-klasy-wewn%C4%99trzne/lekcja/java-podstawy-klasy-wewnetrzne-i-zagniezdzone
+
+Klasa wewnętrzna w odróżnieniu od "zwykłej" może być prywatna i niewidoczna dla kogoś korzystającego z klasy zewnętrznej. Dodatkowo może być oznaczana słowami kluczowymi, które już również znasz - final, abstract, public, protected.
+
+Klasy wewnętrzne wykorzystywane są najczęściej wtedy, gdy chcemy w niej mieć dostęp do klasy otaczającej bez konieczności tworzenia i przekazywania jej instancji lub gdy chcemy ją wykorzystać tylko w celach pomocniczych i nie ma sensu jej wydzielać tak, aby inni również mogli z niej korzystać.
+
+Dla przykładu - każdy samochód posiada silnik, więc w teorii powinniśmy stworzyć dwie klasy - Car i Engine. Po chwili zastanowienia można jednak dojść do wniosku, że przecież silnik jest integralnym elementem samochodu, więc można z niego zrobić wewnętrzną klasę, która będzie miała dzięki temu bezpośredni dostęp do pola oznaczającego ilość paliwa w baku.
+Całe szczęście nie jest to zbyt częsty widok i jest to raczej mało spotykana konstrukcja. Dodatkowo warto w tym miejscu dodać, że jeśli klasa wewnętrzna zostanie oznaczona jako prywatna, to dostęp do niej z zewnątrz będzie niemożliwy.
+
+Podsumowanie
+
+    Klasy wewnętrzne i zagnieżdżone muszą posiadać swoją nazwę.
+    Klasy wewnętrzne mają dostęp zarówno do statycznych jak i niestatycznych elementów klasy opakowującej, jednak klasy zagnieżdżone mają dostęp tylko do elementów statycznych klasy opakowującej.
+    Klasy wewnętrzne i zagnieżdżone mogą być prywatne w odróżnieniu od "zwykłych" klas.
+    Jeśli klasa wewnętrzna posiada co najmniej jedną składową statyczną to sama również musi być statyczna (czyli musi być klasą zagnieżdżoną). Nie dotyczy to stałych (pól oznaczonych jako static final).
+    Klasa wewnętrzna może odwoływać się do wszystkich składowych klasy opakowującej, nawet jeśli te są oznaczone jako prywatne.
+
+W praktyce klasy zagnieżdżone są raczej niespotykane. Klasy wewnętrzne wykorzystywane są częściej, jednak w wielu sytuacjach są to tylko składowe pomocnicze podnoszące czytelność kodu lub wykorzystywane w strukturach danych, gdzie pomagają zbudować odpowiednie zależności między danymi. Oznacza to tyle, że nawet jeśli klasy wewnętrzne gdzieś są wykorzystywane, to jako użytkownicy takich klas niekoniecznie będziemy o tym wiedzieli.

@@ -1,0 +1,3 @@
+Link do kodu źródłowego zadania: http://git.javastart.pl/zadania/optional-1-14902841
+
+Twoim zadaniem jest poprawa klasy OptionalExercise tak, aby przechodziły wszystkie testy w OptionalExerciseTest. Co jest do zrobienia wywnioskuj na podstawie nazw metod oraz treści metod testowych.

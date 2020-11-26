@@ -1,0 +1,15 @@
+lasy anonimowe
+
+Klasy anonimowe są spotykane dużo częściej niż wspomniane powyżej klasy lokalne. Co ciekawe nie posiadają one swojej nazwy i pozornie pozwalają stworzyć instancję na bazie interfejsu lub klasy abstrakcyjnej. Pozornie ponieważ w rzeczywistości tworzona jest nowa klasa, w której metody takiego interfejsu musimy zaimplementować. Klasy anonimowe były w Javie szczególnie często wykorzystywane do tworzenia tzw. słuchaczy, czyli obiektów pozwalających przechwytywać informacje na temat interakcji użytkownika z aplikacją wykorzystującą technologię Swing. Innym zastosowaniem klas anonimowych są sytuacje, w których musimy zdefiniować klasę implementującą jakiś interfejs tylko w jednym miejscu kodu - można więc powiedzieć, że jest to "najbardziej lokalna" ze wszystkich klas wewnętrznych dostępnych w Javie.
+
+Podobnie jak w przypadku klas lokalnych, klasy anonimowe również mogą odwoływać się do pól klasy opakowującej, w której ją definiujemy, a także do zmiennych lokalnych w metodach o ile zmienne te są finalne lub efektywnie finalne.
+
+W Javie 8 wprowadzono pewne zmiany, które sprawiły, że klasy anonimowe da się zastąpić innymi konstrukcjami takimi jak wyrażenia lambda, o których powiemy nieco później, dlatego we współczesnym kodzie nie spotkasz ich już tak często jak kiedyś. Jeśli trafisz kiedyś na nieco starszy projekt, to warto mieć świadomość co to za dziwna konstrukcja.
+Zapamiętaj
+
+    Klasy anonimowe nie posiadają swojej nazwy,
+    mogą wykorzystywać zmienne lokalne metody, w której są zdefiniowane, ale zmienne te muszą być finalne lub efektywnie finalne (mogą być przypisane tylko raz),
+    mogą korzystać ze składowych głównej klasy, w której się znajdują,
+    nie mogą posiadać konstruktorów,
+    mogą definiować dodatkowe pola i metody, których nie ma w interfejsie lub klasie na podstawie którego są tworzone.
+

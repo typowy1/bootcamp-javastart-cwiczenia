@@ -1,0 +1,11 @@
+Treść zadania
+
+Istnieją trzy rodzaje opon:
+
+    Letnie,
+    Zimowe,
+    Uniwersalne
+
+Stwórz klasę, która będzie reprezentowała oponę (wymyśl kilka pól, które mogłyby ją opisywać, w tym jedno oznaczające jej typ).
+
+Stwórz listę z kilkoma przykładowymi oponami, a następnie wyświetl o nich informacje w konsoli.

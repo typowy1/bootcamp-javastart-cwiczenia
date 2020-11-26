@@ -1,0 +1,11 @@
+
+Stwórz w projekcie plik z podanymi poniżej 30 liczbami (rozdzielone spacjami):
+
+24 25 0 28 6 8 15 29 6 8 6 0 15 6 5 22 21 1 16 11 12 2 24 6 2 14 9 16 14 28
+
+Wczytaj liczby do tablicy i wyświetl:
+
+    tablicę posortowaną w kolejności rosnącej
+    najmniejszą liczbę
+    największą liczbę
+    indeks pierwszego wystąpienia liczby 15 w posortowanej tablicy

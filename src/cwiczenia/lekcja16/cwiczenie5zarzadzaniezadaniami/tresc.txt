@@ -1,0 +1,21 @@
+
+Napisz program do zarządzania zadaniami.
+
+Zadanie posiada co najmniej:
+
+    treść
+    datę wykonania
+
+1. Program powinien umożliwiać dodawanie nowych zadań. Podczas dodawania obydwa poniższe formaty powinny być obsługiwane:
+
+    2015-12-05 14:00
+    05.12.2015 14:00
+
+2. Program powinien umożliwiać wyświetlanie:
+
+    wszystkich zadań
+    przeszłych zadań
+    przyszłych zadań
+        tych które należy wykonać w ciągu najbliższych 24 godzin
+        tych które należy wykonać w bieżącym tygodniu (np. jeśli jest piątek to tylko te do końca niedzieli)
+        tych które należy wykonać w ciągu 30 dni

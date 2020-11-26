@@ -1,0 +1,15 @@
+Napisz program, w którym najpierw zapytasz użytkownika ile liczb chce wprowadzić. Następnie wczytaj od niego te
+liczby i zapisz je w kolejce. Na końcu wyświetl kwadraty liczb w kolejności rosnącej.
+
+Dla liczb:
+
+3 (liczba elementów)
+20
+10
+50
+
+W wyniku powinniśmy otrzymać:
+
+100
+400
+2500

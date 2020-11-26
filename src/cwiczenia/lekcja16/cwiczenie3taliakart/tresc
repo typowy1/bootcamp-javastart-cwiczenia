@@ -1,0 +1,36 @@
+Talia kart składa się z 52 kart. Każda karta posiada kolor:
+
+    Trefl (żołądź / clubs)
+    Karo (dzwonek / diamonds)
+    Kier (serce / hearts)
+    Pik (wino / spades)
+
+W każdym kolorze jest 9 kart numerowanych (2, 3, 4, 5, 6, 7, 8, 9, 10) oraz cztery figury (walet / jack, dama / queen, król / king, as / ace).
+
+Napisz program, w którym wygenerujesz pełną talię kart do postaci tablicy lub kolekcji wybranego typu(wszystkie kombinacje kolorów i numerów/figur.
+
+Następnie poproś użytkownika o podanie języka (PL / EN) i wyświetl informacje o wszystkich dostępnych kartach w konsoli.
+
+Jeśli użytkownik wybierze nieobsługiwany przez nas język, to powinien zostać poinformowany o błędzie i poproszony o wybór języka po raz kolejny.
+
+Oczekiwany wydruk dla PL (fragment):
+
+Dwójka żołądź
+Trójka żołądź
+…
+Dziesiątka serce
+Walet serce
+…
+Król wino
+As wino
+
+Oczekiwany wydruk dla EN (fragment):
+
+Two of clubs
+Three of clubs
+…
+Ten of hearts
+Jack of hearts
+…
+King of spades
+Ace of spades

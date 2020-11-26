@@ -1,0 +1,15 @@
+Treść zadania
+
+Napisz program, w którym zdefiniujesz klasę Customer(id, firstName, lastName, telNumber).
+
+W osobnej klasie utwórz mapę, w której umieścisz informacje o kilku klientach, gdzie kluczem będzie id, a wartością obiekt reprezentujący klienta.
+
+    Wyświetl osobno informację o przechowywanych w mapie:
+        kluczach
+        wartościach.
+
+        Zapytaj użytkownika o id klienta i:
+
+            wyświetl jego dane
+            jeśli klient o podanym id nie istnieje to wyświetl stosowną wiadomość
+

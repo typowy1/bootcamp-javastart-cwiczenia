@@ -1,0 +1,6 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-40-strumienie/lekcja/java-podstawy-wprowadzenie-do-strumieni-new
+Oprócz wyrażeń lambda, do Javy 8 wprowadzono także nowy mechanizm w postaci strumieni. Strumień na pierwszy rzut oka może przypominać listę, a konkretnie listę wiązaną lub ewentualnie iterator, ponieważ stanowi on sekwencję obiektów ułożonych jeden za drugim.
+
+Strumienie najczęściej będą tworzone na podstawie kolekcji i będą pozwalały na ich wygodne przetwarzanie. W połączeniu z wyrażeniami lambda, strumienie umożliwiają na dużo bardziej ekspresywne wyrażenie operacji, które wcześniej wykonywane były na kolekcjach w klasycznych pętlach.
+
+Zanim jednak przejdziemy do przekształcania kolekcji na strumienie, pokażę ci jak tworzyć je samodzielnie.

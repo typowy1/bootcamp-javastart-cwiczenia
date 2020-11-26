@@ -1,0 +1,15 @@
+
+https://javastart.pl/kurs/java/java-podstawy-temat-41-przetwarzanie-kolekcji/lekcja/java-podstawy-przetwarzanie-kolekcji-za-pomoc%C4%85-strumieni
+Metody filter(), map() i collect()
+
+Trzy powyżej wymienione metody są najczęściej wykorzystywane przy przetwarzaniu strumieni, więc musisz je zapamiętać. W klasach Stream istnieje także wiele metod dodatkowych, jednak raczej nie próbowałbym zapamiętać ich wszystkich, a zamiast tego raczej przeglądał listę w dokumentacji podczas rozwiązywania konkretnego problemu.
+
+Pamiętaj, że operując na strumieniu stworzonym na bazie kolekcji i wykonując na nim operacje filter() lub map() nie modyfikujesz faktycznej kolekcji. Zawsze na końcu należy wykonać metodę collect(), która pozwoli zwrócić w wyniku nową kolekcję, którą przypiszemy do jakiejś referencji. Metodzie collect() należy przekazać parametr w postaci obiektu Collector. Najlepiej skorzystać z klasy pomocniczej Collectors, która zwróci dla nas odpowiedni obiekt tego typu za pomocą jednej z metod:
+
+    toList()
+    toSet()
+    toMap()
+
+lub jeśli potrzebujemy konkretnego typu kolekcji, skorzystaj z metody:
+
+    toCollection(TypKolekcji::new)

@@ -1,0 +1,124 @@
+
+https://javastart.pl/kurs/java/java-podstawy-temat-42-daty-i-czas/lekcja/java-podstawy-daty-w-javie-8
+
+Klasa Instant
+
+Warto dodać, że czas i daty w programowaniu najczęściej są stworzone w taki sposób, że dzień reprezentowany jest za pomocą 86400 sekund. Czas reprezentowany jest jako "Czas uniksowy", czyli ilość sekund jaka upłynęła od początku roku 1970.
+Klasa Instant
+
+Jeżeli potrzebna jest nam klasa do reprezentacji czasu w danej chwili, która posłuży np. do zapisania czasu utworzenia jakiegoś obiektu lub upływającego czasu, będzie to dobry wybór.
+
+Klasa Instant nie posiada konstruktora, jeżeli chcesz uzyskać aktualny czas powinieneś posłużyć się statyczną metodą Instant.now():
+
+Instant actualTime = Instant.now();
+1
+file_copy
+
+Innym sposobem jest skorzystanie z metod of:
+
+    ofEpochMilli() - zwraca obiekt Instant na podstawie argumentu w postaci ilości milisekund, które upłynęły od początku 1970 roku,
+    ofEpochSecond() - j/w z tą różnicą, że czas jako argument podajemy w sekundach.
+
+Przykład:
+
+Instant inst = Instant.ofEpochSecond(1545038283);
+1
+file_copy
+
+Następnie z takiego obiektu możemy uzyskać informacje takie jak:
+
+    getEpochSecond() - ilość sekund, która upłynęła od początku 1970 roku,
+    getNano() - ilość nanosekund jaka upłynęła od początku aktualnej sekundy,
+    isAfter() / isBefore() - sprawdza, czy podany punkt w czasie był przed, czy po jakimś innym.
+
+Klasa Instant jest szczególnie użyteczna w połączeniu z klasą Duration, która pozwala nam określić pewien okres w czasie. W tym celu obiekt klasy Duration można utworzyć wykorzystując metodę between():
+
+https://javastart.pl/kurs/java/java-podstawy-temat-42-daty-i-czas/lekcja/java-podstawy-daty-w-javie-8
+Instant i1 = Instant.now();
+Instant i2 = Instant.now();
+Duration timeGap = Duration.between(i1, i2);
+
+
+Klasa LocalTime
+
+Jeżeli w programie potrzebujesz jednak informacji takich jak aktualna godzina, minuta, czy sekunda, to zdecydowanie bardziej użyteczna będzie klasa LocalTime. Pozwala ona nie tylko uzyskać aktualny czas, ale w wygodny sposób możemy także dowiedzieć się, która godzina będzie za 2967 sekund, albo 237 minut.
+
+Jeżeli potrzebujesz obiektu LocalTime możesz skorzystać podobnie jak w przypadku klasy Instant albo z metody now(), która zwróci aktualny czas, albo skorzystać z metod of(), które pozwalają podać jako kolejne argumenty godzinę, minutę, sekundę i nanosekundę, na podstawie, których utworzymy obiekt reprezentujący punkt w czasie.
+
+LocalTime lt = LocalTime.now(); //np. 10:23:48.160436
+LocalTime lt2 = LocalTime.of(12, 0, 0); //12:00:00:00
+1
+2
+file_copy
+
+Pierwszy z obiektów reprezentuje aktualny czas (godzina, minuta, sekunda, nanosekunda), a drugi reprezentuje godzinę 12:00.
+
+Tak jak w klasie Instant również tutaj znajdziemy metody takie jak isBefore() / isAfter(), a także użyteczny zestaw metod typu plus i minus, które tak jak wspomnieliśmy pozwolą przesunąć czas.
+
+Przykładowy program, który ustawia zegarek na godzinę aktualną, a następnie co sekundę (przez 10 kolejnych sekund) wyświetla zaktualizowaną godzinę.
+
+
+Klasa LocalDate
+
+LocalDate jest klasą podobną pod względem funkcjonalności do LocalTime, jednak istotą jej istnienia jest reprezentacja daty (rok, miesiąc, dzień), a nie reprezentacji czasu (godzina, minuta, sekunda).
+
+LocalDate now = LocalDate.now();
+LocalDate firstJan2014 = LocalDate.of(2014, 1, 1);
+1
+2
+file_copy
+
+Ponownie istnieją dwa główne sposoby tworzenia obiektów tego typu. Zestaw metod także jest bardzo podobny:
+
+    getYear() - reprezentuje rok zapisany w danym obiekcie LocalDate,
+    getMonth() - reprezentuje miesiąc zapisany w danym obiekcie LocalDate,
+    getDay() - reprezentuje dzień  zapisany w danym obiekcie LocalDate,
+
+Oprócz tego możemy dowiedzieć się, który jest dzień roku, czy miesiąca za pomocą metod takich jak:
+
+    getDayOfYear() - zwraca informację, który to dzień roku,
+    getDayOfMonth() - zwraca informację, który to dzień miesiąca,
+    getDayOfWeek() - zwraca informację, który to dzień tygodnia.
+
+Prosty program, który porówna dwie daty:
+
+
+LocalDateTime
+
+Jeżeli informacja o samej dacie, albo o samym czasie nie jest dla nas wystarczająca, albo gdy w programie nie chcemy osobno przechowywać informacji o dacie oraz czasie w ramach tej daty, to możemy skorzystać z klasy, która łączy funkcjonalności z nich obu. Klasa LocalDateTime reprezentuje czas w konkretnym dniu, więc przykładowo może być użyteczna jeżeli tworzylibyśmy aplikację kalendarza.
+
+Ze względu na ilość przechowywanych informacji istnieje dużo przeciążonych wersji metody of(), może ona przyjmować rok, miesiąc, dzień, godzinę, minutę, sekundy i nanosekundy.
+
+LocalDateTime now = LocalDateTime.now();
+LocalDateTime.of(2018, 12, 31, 12, 30, 45); // 31 grudnia 2018, 12:30:45
+1
+2
+file_copy
+
+Zestaw metod dostępowych wygląda w tym przypadku jak połączenie metod dostępnych w klasach LocalDate oraz LocalTime. Możemy się dowiedzieć zarówno jaki dzień w miesiącu reprezentuje dany obiekt, ale także jaka jest godzina.
+
+    getDayOfYear() - zwraca informację, który to dzień roku,
+    getDayOfMonth() - zwraca informację, który to dzień miesiąca,
+    getDayOfWeek() - zwraca informację, który to dzień tygodnia,
+    getHour() - zwraca godzinę czasu, którą reprezentuje ten obiekt,
+    getMinute() - zwraca minutę czasu, którą reprezentuje ten obiekt,
+    getSecond() - zwraca sekundę czasu, którą reprezentuje ten obiekt.
+
+    DateTimeFormatter
+
+    Tworzenie obiektów LocalDate, czy LocalDateTime poprzez podawanie osobno roku, miesiąca i dnia byłoby mało praktyczne. Dużo wygodniej byłoby podać całą datę np. w postaci "1997-11-23". Twórcy przewidzieli także taką możliwość. Możemy utworzyć obiekt DateTimeFormatter, w którym definiujemy wzorzec daty, który ma wprowadzić użytkownik. Należy się w nim posługiwać skrótami:
+
+        dd - dzień,
+        MM - miesiąc,
+        yyyy - rok,
+        HH - godzina,
+        mm - minuta,
+        ss - sekunda.
+
+    Przykład:
+
+    DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    1
+    file_copy
+
+    Później na podstawie takiego wzorca, oraz Stringa, np. wczytanego od użytkownika, możemy utworzyć obiekt LocalDate korzystając z metody parse().

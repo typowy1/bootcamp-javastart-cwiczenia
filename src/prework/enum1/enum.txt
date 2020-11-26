@@ -1,0 +1,41 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-20-typ-enum/lekcja/java-podstawy-typ-wyliczeniowy-enum
+
+W Javie od wersji 5 wprowadzony został typ wyliczeniowy enum, który pozwala na zdefiniowanie nowego typu danych, który jednocześnie będzie miał tylko kilka możliwych wartości (stałych). Istotne jest to, że wartości te określamy na etapie definiowania typu, nie da się ich później dodać. W naszym przypadku stworzymy nowy typ odzwierciedlający trzy możliwe rozmiary. W przypadku IntelliJ tworzymy go tak samo jak klasę, wybierając w okienku z definiowaniem nazwy Enum zamiast Class. W eclipse jest od tego odpowiedni kreator New > Enum.
+
+Typ wyliczeniowy przypomina klasę, ale zamiast słowa class używamy słowa kluczowego enum.
+Typ enum w takiej formie byłby w gruncie rzeczy niezbyt użyteczny, bo oprócz kontroli typu nie daje nam zbyt wiele pożytku, a co najwyżej komplikuje wczytanie danych od użytkownika. Typ wyliczeniowy daje jednak dużo większe możliwości. Możemy w nim przechowywać dodatkowe pola, tak jak w zwykłych klasach, możemy definiować metody, a także zapisywać konstruktory. Te ostatnie są tutaj najciekawsze, ponieważ nie mogą być one publiczne, ani protected, a dodatkowo mogą być wywoływane bezpośrednio w typie, w którym je definiujemy, czyli np. Size.
+
+ Każdy zdefiniowany przez nas typ enum rozszerza niejawnie klasę Enum, co wiąże się z tym, że w przypadku typów wyliczeniowych nie możemy korzystać z dziedziczenia (w Javie nie istnieje wielodziedziczenie klas). W klasie Enum jest kilka przydatnych metod, które dzięki dziedziczeniu znajdują się także w naszym typie Size.
+
+valueOf(String name) - przyjmuje nazwę typu i zwraca wartość typu Enum. Nazwa musi być zgodna z nazwą wartości z uwzględnieniem wielkości liter np.:
+
+Size smallSize = Size.valueOf("SMALL"); //zwraca Size.SMALL
+1
+file_copy
+
+name() - zwraca nazwę wartości, np.
+
+String smallName = Size.SMALL.name(); //"SMALL"
+String mediumName = Size.MEDIUM.name(); //"MEDIUM"
+1
+2
+file_copy
+
+ordinal() - zwraca numer wartości poczynając od 0. Np.:
+
+int smallNumber = Size.SMALL.ordinal(); //0
+int mediumNumber = Size.MEDIUM.ordinal(); //1
+1
+2
+file_copy
+
+values() - zwraca tablicę wszystkich wartości zdefiniowanych w danym enumie, np.:
+
+Size[] values = Size.values(); // SMALL, MEDIUM, LARGE
+
+
+Kiedy stosować typ enum?
+
+Wtedy, kiedy logiczne jest zdefiniowanie typu, który przyjmuje tylko ograniczony zbiór wartości (stałych). W niektórych sytuacjach, należy się jednak zastanowić, czy zamiast 2 zmiennych finalnych, zdefiniowanie typu enum przyniesie nam jakiekolwiek korzyści.
+
+Największymi zaletami jest to, że jak nazwa wskazuje jest to typ wyliczeniowy - daje możliwość zwrócenia wszystkich możliwych wartości za pomocą metody values(), a co więcej wartości typów enum możemy stosować w konstrukcji switch podobnie jak liczby całkowite i napisy. Po wartościach typu wyliczeniowego możemy iterować np. przy pomocy pętli, natomiast w przypadku zwykłych stałych nie istnieje na to prosty sposób. Dzięki temu enum pozwala pisać kod bardziej uniwersalny, w którym liczba zmian w przypadku pojawienia się nowych wartości będzie niewielka.

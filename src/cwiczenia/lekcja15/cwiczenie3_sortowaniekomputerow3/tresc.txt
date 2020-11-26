@@ -1,0 +1,3 @@
+Przerób zadanie z poprzedniego ćwiczenia w taki sposób, aby komparatory były odporne na porównywanie wartości
+null. Przetestuj działanie, gdy w tablicy znajduje się wartości null lub obiekty w niej zapisane nie mają
+zainicjowanych wszystkich pól.

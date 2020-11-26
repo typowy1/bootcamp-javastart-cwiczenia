@@ -1,0 +1,102 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-38-wyra%C5%BCenia-lambda/lekcja/java-podstawy-wyrazenia-lambda-i-interfejsy-funkcyjne
+
+W programowaniu funkcyjnym skupiamy się na wyniku poprzez jego opis za pomocą matematycznej funkcji. Języki funkcyjne dostarczają nam narzędzi, które pozwalają na opis problemu i pozwalają nie martwić się jak właściwie coś jest wykonywane.
+W Javie 8 wprowadzono elementy programowania funkcyjnego, które są przydatne przede wszystkim w przetwarzaniu kolekcji, czyli np. list
+
+Wyrażenia Lambda
+
+Wyrażenie lambda, to taka konstrukcja w języku Java, która przyjmuje dowolne argumenty lub nie przyjmuje ich wcale i może zwracać na ich podstawie pewien wynik.
+
+W rozumieniu matematycznym funkcję rozumiemy, np. jako:
+
+f(x) = x * x
+
+czyli funkcję potęgującą dowolną liczbę. W Javie zapiszemy ją jako wyrażenie lambda w takiej postaci:
+
+(int x) -> x*x;
+
+Widzimy tutaj trzy elementy:
+
+    (int x) - argumenty funkcji podane w nawiasach okrągłych,
+    -> - strzałka, czyli operator wskazujący, że jest to wyrażenie lambda,
+    x*x - wyrażenie, ciało funkcji.
+
+Możliwy jest także zapis w nieco innej formie.
+
+1. Wykorzystanie słowa kluczowego return
+
+(int x) -> return x*x;
+
+2. Pominięcie typów argumentów funkcji.
+
+Język Java jest silnie typowany, czyli typ zmiennych musi byś znany na etapie kompilacji. Przekazując argumenty funkcji, kompilator będzie najczęściej w stanie wydedukować ich typ na podstawie wykonywanego wyrażenia, więc przy argumentach możemy pominąć podawanie typu i zapisać krótko:
+
+(x) -> x*x;
+
+3. Dodatkowe lub zbędne nawiasy.
+
+Możemy wykonać bardziej złożone instrukcje w ciele funkcji, a także pominąć nawiasy okrągłe przy jej argumentach:
+
+x -> { if(x>0) return x*x; else return 0; }
+
+przy czym nie muszą one być zapisane w jednym wierszu.
+
+Na tym etapie wyrażenia lambda wydają się bezużyteczne, ale wyobraź sobie teraz, że taką funkcję możemy przekazać np. do kolekcji i zostanie ona wykonana na każdym elemencie naszej listy. Będzie to znaczna oszczędność czasu, a także podniesie to czytelność kodu.
+
+
+
+Interfejsy funkcyjne
+
+Jeżeli chcesz w Javie przekazać wyrażenie lambda jako argument metody, czy konstruktora, albo chcesz je przypisać zmiennej, to musisz najpierw zdefiniować interfejs funkcyjny (eng. functional interface) lub skorzystać z jednego z dostępnych interfejsów funkcyjnych w bibliotece JDK.
+
+Interfejsem funkcyjnym nazywamy interfejs, który posiada tylko jedną metodę abstrakcyjną.
+
+W Javie 8 zdefiniowano interfejsy funkcyjne dla najpopularniejszych zastosowań, pełną listę możesz znaleźć pod tym linkiem, poniżej wymieniono te, które pokażemy na przykładach:
+
+    Consumer<T> - posiada metodę accept(T t) - przyjmuje argument typu T, ma za zadanie wykonać pewną operację i nie zwraca wyniku,
+    Function<T, R> - posiada metodę apply(T t) - reprezentuje funkcję przyjmującą argument typu T i zwracającą argument typu R,
+    Predicate<T> - posiada metodę test(T t) - przyjmuje argument typu T i zwraca wartość typu boolean,
+    Supplier<T> - posiada metodę get() - tworzy nowy obiekt typu T.
+
+
+Interfejs Function
+
+Najprostszym przykładem wykorzystania funkcji może być transformacja pewnego napisu na inny. Załóżmy, że chcemy stworzyć funkcję, która przyjmuje jako argument dowolny napis, a jej zadaniem jest zwrócenie tego samego napisu, ale zamienionego na małe litery i bez zbędnych białych znaków na początku i na końcu.
+
+Moglibyśmy po prostu wywołać kilka metod jedna po drugiej osiągając zamierzony efekt:
+
+String original = "   WIELKI NAPIS   ";
+original = original.toLowerCase().trim();
+1
+2
+file_copy
+
+Powyższy kod można także opakować w metodę, która przyjmuje String i w wyniku także zwraca String. Zamiast wywoływać kilka metod, można wywołać tylko ją:
+
+String getLowerCaseTrim(String original) {
+	return original.toLowerCase().trim();
+}
+1
+2
+3
+file_copy
+
+Powyższa metoda przyjmuje obiekt typu String i zwraca w wyniku również String. Odpowiada ona więc takiemu wyrażeniu lambda jak String s -> String. Wśród interfejsów funkcyjnych znajdziemy interfejs Function, którego metoda apply() pasuje do tej sytuacji. Ma ona następującą sygnaturę:
+
+R apply(T t);
+1
+file_copy
+
+Jak widać, jest to interfejs parametryzowany typami generycznymi. Pod T oraz R możemy podstawić dowolne typy obiektowe. Jeżeli pod jeden i drugi parametr podstawimy typ String, to metoda przyjmuje obiekt String i zwraca String - dokładnie tak samo jak w naszym przykładzie. Interfejs ten możemy wykorzystać w naszym kodzie, a metodę getLowerCaseTrim() możemy zastąpić wyrażeniem lambda. Na początek przypiszmy wyrażenie lambda do zmiennej:
+
+Function<String, String> func = (String s) -> s.toLowerCase().trim();
+1
+file_copy
+
+Wyrażenie lambda, zapisane po prawej stronie równania, przyjmuje parametr typu String, zamienia tekst na małe litery, usuwa białe znaki z końca i początku i zwraca tak zmodyfikowany napis w wyniku. Ze względu na to, że nasza zmienna ma określony typ generyczny, czyli zapisaliśmy Function<String, String>, to wirtualna maszyna Javy może wywnioskować typy i wyrażenie lambda można zapisać z pominięciem typu:
+
+Function<String, String> func = text -> text.toLowerCase().trim();
+1
+file_copy
+
+W celu wywołania utworzonej funkcji z jakimś argumentem należy wywołać metodę, która zdefiniowana jest w naszym interfejsie funkcyjnym. U nas chodzi o metodę apply().
