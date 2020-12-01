@@ -1,0 +1,18 @@
+
+https://javastart.pl/kurs/testowanie-jednostkowe/asercje/lekcja/tj-asercje-w-junit
+Asercje to metody które umożliwiają sprawdzenie czy wartość uruchomienia metody testowanej jest taka jak się spodziewamy. Najczęściej jest tak, że po uruchomieniu metody którą mieliśmy sprawdzić należy sprawdzić czy wynik jest taki jak oczekiwany. Przykładowe asercje:
+
+    sprawdź czy wynik obliczenia to 5
+    sprawdź czy lista wynikowa zawiera dokładnie 10 elementów
+    sprawdź czy tekst wynikowy jest zakończony fragmentem "naście"
+    sprawdź czy wynik to null
+
+Asercje w JUnit 5
+
+Istnieją dedykowane biblioteki które zajmują się tylko obsługą asercji, natomiast JUnit 5 również posiada kilka wbudowanych metod. W dalszej części kursu poznasz bibliotekę AssertJ, natomiast tutaj przyjrzymy się jakie możliwości posiada biblioteka JUnit 5. Wszystkie asercje w JUnit 5 to statyczne metody klasy org.junit.jupiter.api.Assertions. Weźmy na start kilka prostszych:
+
+    Assertions.assertNull(Object object) - sprawdza czy przekazana wartość to null
+    Assertions.assertNotNull(Object object) - sprawdza czy przekazana wartość nie jest nullem
+    Assertions.assertTrue(boolean value) - sprawdza czy przekazana wartość to true
+    Assertions.assertFalse(boolean value) - sprawdza czy przekazana wartość to false
+    Assertions.assertEquals(int expected, int actual) - sprawdza czy podane wartości są takie same

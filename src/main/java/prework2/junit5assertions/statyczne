@@ -1,0 +1,84 @@
+https://javastart.pl/kurs/testowanie-jednostkowe/asercje/lekcja/tj-statyczne-importowanie-metod
+
+Statyczne importowanie metod
+
+Java umożliwia skrócenie zapisu w przypadku korzystania z składowych statycznych. Rzadko stosuje się to w kodzie produkcyjnym, za to funkcjonalność ta jest niezwykle przydatna w pisaniu testów. Zacznijmy od krótkiego przykładu:
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class StaticImportExample {
+
+    @Test
+    void shouldAdd2To2AndReturn4() {
+        // given
+        Calculator calculator = new Calculator();
+
+        // when
+        int result = calculator.add(2, 2);
+
+        // then
+        Assertions.assertEquals(2, result);
+        Assertions.assertTrue(result == 2);
+    }
+}
+
+
+Kod ten można skrócić statycznie importując składową statyczną jaką jest metoda assertEquals. Spójrzmy na jej sygnaturę:
+
+public static void assertEquals(int expected, int actual) {
+	AssertEquals.assertEquals(expected, actual);
+}
+1
+2
+3
+file_copy
+
+Jak widać, metoda jest statyczna i publiczna. To pozwala na następujący import;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+1
+file_copy
+
+Od tego momentu możemy korzystać z metody assertEquals tak jakby znajdowała się w tej samej klasie:
+
+package pl.javastart.junittestingcourse.examples;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class StaticImportExample {
+
+    @Test
+    void shouldAdd2To2AndReturn4() {
+        // given
+        Calculator calculator = new Calculator();
+
+        // when
+        int result = calculator.add(2, 2);
+
+        // then
+        assertEquals(2, result);
+        Assertions.assertTrue(result == 2);
+    }
+}
+
+Tak samo można zrobić z assertTrue. Jeśli natomiast korzystasz z IntelliJ IDEA to możesz skorzystać z podpowiedzi (Ctrl + Enter) i wybrać opcję "Add static import..."
+
+Wtedy nie będzie potrzeby robienia tego ręcznie.
+
+W ramach statycznych importów można korzystać również z wieloznaczników.  Zamiast importować kolejne metody z klasy:
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+1
+2
+file_copy
+
+można użyć takiego zapisu:
+
+import static org.junit.jupiter.api.Assertions.*; * wieloznacznik, stosowana w testach
+
+Zapis ten spowoduje zaimportowanie wszystkich dostępnych metod (statycznych i publicznych) z klasy Assertions.

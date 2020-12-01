@@ -1,0 +1,11 @@
+Biblioteka JUnit 5 zawiera podstawowy zestaw asercji, więc teoretycznie można byłoby z nich korzystać, ale najczęściej do projektu dołącza się jeszcze dedykowaną bibliotekę. W naszym przypadku będzie to AssertJ (inna często używana alternatywa to Hamcrest) Jest to biblioteka która umożliwia pisanie płynnych asercji, czyli takich które możemy czytać w sposób naturalny dla języka angielskiego.
+Instalacja
+
+Instalacja biblioteki ogranicza się do dodania zależności do Mavena (w pliku pom.xml). Wchodzimy na http://mvnrepository.com/, w okienku wyszukiwania wpisujemy "assertj". Następnie wybieramy pierwszy element z listy wyszukanych (assertj-core), później jego najnowszą wersję. Kopiujemy i dodajemy do pom.xml.
+
+<dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <version>3.16.1</version>
+    <scope>test</scope>
+</dependency>

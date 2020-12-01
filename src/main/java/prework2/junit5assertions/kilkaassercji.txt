@@ -1,0 +1,139 @@
+https://javastart.pl/kurs/testowanie-jednostkowe/asercje/lekcja/tj-kilka-asercji-w-tescie
+
+Ile asercji powinien mieć test?
+
+Nie ma jednoznacznej odpowiedzi na to pytanie. To pytanie powinno być zadane w inny sposób: "Ile rzeczy powinien sprawdzać test". Wtedy odpowiedź brzmi: dokładnie jedną. Natomiast ile asercji należy wykonać w celu sprawdzenia jednej rzeczy możne być różne w zależności od tego co sprawdzamy. Jako przykład weźmy taki kawałek kodu:
+
+    @Test
+    void shouldCorrectlyCreateHulk() {
+        Superhero hulk = Superheros.getHulk();
+        assertThat(hulk.getAbilities()).contains("intelligence");
+        assertThat(hulk.getColor()).isEqualTo("blue");
+        assertThat(hulk.getPublisher()).isEqualTo("Disney");
+    }
+
+
+Powyższy test sprawdza jedną rzecz: czy poprawnie tworzony jest obiekt reprezentujący Hulka. Test ten zawiera 3 asercje, co w tym przypadku jest uzasadnione. Teoretycznie można go rozbić na 3 osobne testy, ale moim zdaniem byłby to przerost formy nad treścią.
+
+Domyślnie testy jest wykonywany do momentu znalezienia pierwszego błędu. Wtedy jest przerywany. Jeśli test posiada kilka asercji to komunikat z błędem będzie zawierał wynik tylko jednej asercji. Uruchomienie powyższego przykładu spowoduje wyświetlenie następującego komunikatu:
+
+java.lang.AssertionError:
+Expecting:
+ <["regeneration", "agility", "superstrength"]>
+to contain:
+ <["intelligence"]>
+but could not find:
+ <["intelligence"]>
+
+
+Możemy jednak napisać test tak, żeby otrzymać wynik wszystkich asercji. Zarówno  AssertJ oraz JUnit 5 posiadają do tego odpowiednie mechanizmy.
+Uruchomienie wielu asercji korzystając z AssertJ
+
+W AssertJ do uruchomienia wszystkich asercji korzysta się z SoftAssertions. Przerobienie powyższego testu wygląda następująco:
+
+    @Test
+    void multipleAssertionsTogetherWithAssertJ() {
+        Superhero hulk = Superheros.getHulk();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(hulk.getAbilities()).contains("intelligence");
+        softAssertions.assertThat(hulk.getColor()).isEqualTo("blue");
+        softAssertions.assertThat(hulk.getPublisher()).isEqualTo("Disney");
+        softAssertions.assertAll();
+    }
+
+file_copy
+
+Najpierw tworzymy obiekt SoftAssertions wywołując konstruktor, a następnie dodajemy do niego kolejne asercje. Po ich dodaniu wywołujemy sprawdzenie za pomocą softAssertions.assertAll(). Uwaga! Jeśli zapomnisz o uruchomieniu, to test przejdzie, bo nie zostanie wykonana żadna asercja!
+
+Wynik wygląda następująco:
+
+Multiple Failures (3 failures)
+-- failure 1 --
+Expecting:
+ <["regeneration", "agility", "superstrength"]>
+to contain:
+ <["intelligence"]>
+but could not find:
+ <["intelligence"]>
+
+at AssertJMultipleAssertions.multipleAssertionsTogether(AssertJMultipleAssertions.java:26)
+-- failure 2 --
+Expecting:
+ <"green">
+to be equal to:
+ <"blue">
+but was not.
+at AssertJMultipleAssertions.multipleAssertionsTogether(AssertJMultipleAssertions.java:27)
+-- failure 3 --
+Expecting:
+ <"Marvel">
+to be equal to:
+ <"Disney">
+but was not.
+at AssertJMultipleAssertions.multipleAssertionsTogether(AssertJMultipleAssertions.java:28)
+
+file_copy
+
+Uruchomienie wielu asercji korzystając z JUnit 5
+
+JUnit5 również posiada możliwość uruchomienia kilku asercji. Służy do tego metoda Assertions.assertAll(). Posiada ona kilka wariantów, wszystkie z nich przyjmują zestaw obiektów Executable: varargs, kolekcję lub strumień.
+
+Executable to interfejs funkcyjny o takiej sygnaturze:
+
+public interface Executable {
+    void execute() throws Throwable;
+}
+1
+2
+3
+file_copy
+
+Zaletą interfejsu funkcyjnego jest to, że jego implementację można podać w formie wyrażenia lambda.
+
+Przerobiony test wygląda następująco:
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
+public class JUnit5MultipleAssertions {
+
+    @Test
+    void multipleAssertionsTogetherWithJUnit() {
+        Superhero hulk = Superheros.getHulk();
+        assertAll(
+                () -> assertThat(hulk.getAbilities()).contains("intelligence"),
+                () -> assertThat(hulk.getColor()).isEqualTo("blue"),
+                () -> assertThat(hulk.getPublisher()).isEqualTo("Disney")
+        );
+    }
+}
+
+
+Zauważ, że korzystam z metod assertThat pochodzących z biblioteki AssertJ. Świetne jest to, że nic nie stoi na przeszkodzie, żeby łączyć w ten sposób wykorzystanie obu bibliotek. Assertions.assertAll pochodzi z JUnit 5, a Assertions.assertThat z AssertJ. Zobaczmy jeszcze na wynik wywołania testu:
+
+org.opentest4j.MultipleFailuresError: Multiple Failures (3 failures)
+
+Expecting:
+ <["regeneration", "agility", "superstrength"]>
+to contain:
+ <["intelligence"]>
+but could not find:
+ <["intelligence"]>
+
+
+Expecting:
+ <"green">
+to be equal to:
+ <"blue">
+but was not.
+
+Expecting:
+ <"Marvel">
+to be equal to:
+ <"Disney">
+but was not.
+
+
+Wynik jest bardzo podobny do tego z AssertJ. Jedyna zauważalna różnica to brak numerowania.
+
+Moim zdaniem to właśnie takie połączenie jak powyżej jest najbardziej efektywne i gdy istnieje potrzeba sprawdzania kilku asercji to właśnie z tego korzystam.

@@ -1,0 +1,236 @@
+ArgumentMatcher
+https://javastart.pl/kurs/testowanie-jednostkowe/mockowanie/lekcja/tj-argument-matcher
+
+Zacznijmy od przypomnienia poprzedniego kawałka kodu
+
+    @Test
+    public void shouldHandleVoidMethod() {
+        User user = Mockito.mock(User.class);
+
+        Mockito.doThrow(new IllegalStateException()).when(user).setName("Kasia");
+
+        user.setName("Basia");
+        user.setName("Kasia");
+    }
+
+W tym przypadku wyjątek zostanie rzucony tylko w przypadku gdy metoda setName() zostanie wywołana z wartością "Kasia". Dla "Basia" nic się nie stanie. Jednak gdybyśmy chcieli, żeby wyjątek był rzucony za dla każdego argumentu należy użyć ArgumentMatchera. Zobaczmy to na przykładzie.
+
+    @Test
+    public void shouldHandleVoidMethod() {
+        User user = Mockito.mock(User.class);
+
+        Mockito.doThrow(new IllegalStateException()).when(user).setName(ArgumentMatchers.anyString());
+
+        user.setName("Basia");
+        user.setName("Kasia");
+    }
+
+
+ W tym przypadku zastosowany został ArgumentMatchers.anyString(). Zadziała on dla dowolnej wartości typu String. Jak się zapewne domyślasz istnieją wszystkie odpowiedniki do podstawowych typów: anyString(), anyInt(), anyDouble(), anyShot(), anyByte(), anyFloat() itd.
+
+ArgumentMatcher to nic innego jak sposób poinformowania Mockito, czy przekazany argument jest zgodny z założeniem. Pod spodem, Mockito rejestruje sobie obiekt dla interfejsu, który wygląda następująco
+
+public interface ArgumentMatcher<T> {
+    boolean matches(T argument);
+}
+
+
+Odpowiedź dla każdego argumentu może być tylko: TAK lub NIE (nadaje się, albo nie). Koncept prosty, ale jakże praktyczny.
+
+Nie spotkałem się jeszcze z potrzebą implementowania tego interfejsu samemu i tworzenia customowych matcherów, ponieważ większość jest dostępna od ręki. Opisywanie wszystkich mija się trochę z celem. Postanowiłem je pogrupować i przedstawić poniżej.
+Matchery i "zwykłe" argumenty
+
+W przypadku gdy metoda przyjmuje więcej niż jeden argument, a podczas mockowania zastosujemy ArgumentMatcher, to wszystkie pozostałe parametry również muszą być matcherami. Rzuć okiem na przykład poniżej.
+
+public interface EmailService {
+    String prepareEmailContentFormatting(String content, boolean isHtml);
+}
+1
+2
+3
+file_copy
+
+Załóżmy, że metoda prepareEmailContentFormatting ma przygotowywać zawartość maila. W zależności od parametru isHtml dodaje odpowiednie tagi HTML do zawartości.
+
+W ramach naszego testu nie interesuje nas argument isHtml, obojętnie co zostanie tam przekazane wynik wywołania metody ma być zawsze taki sam. Aktualna wiedza sugeruje następujący zapis:
+
+    @Test
+    public void shouldSendEmailOnlyToAdmin() {
+        // given
+        EmailService emailService = mock(EmailService.class);
+        // when
+        when(emailService.prepareEmailContentFormatting("Treść Maila", anyBoolean())).thenReturn("Treść Maila"); // (1)
+    }
+1
+2
+3
+4
+5
+6
+7
+file_copy
+
+(1) anyBoolean() -  import static org.mockito.ArgumentMatchers.anyString;
+
+Niestety próba uruchomienia powyższego testu zostanie zakończona błędem.
+
+org.mockito.exceptions.misusing.InvalidUseOfMatchersException:
+Invalid use of argument matchers!
+2 matchers expected, 1 recorded:
+1
+2
+3
+file_copy
+
+Błąd wynika z ograniczenia Mockito polegającym na tym, że nie możemy ze sobą łączyć Matcherów i "zwykłych" parametrów. Na szczęście jest proste rozwiązanie. W takim przypadku należy zastąpić "zwykły" parametr matcherem ArgumentMatchers.eq():
+
+    @Test
+    public void shouldSendEmailOnlyToAdminFixed() {
+        // given
+        EmailService emailService = mock(EmailService.class);
+        // when
+        when(emailService.prepareEmailContentFormatting(eq("Treść Maila"), anyBoolean())).thenReturn("Treść Maila");
+    }
+1
+2
+3
+4
+5
+6
+7
+file_copy
+
+Po zastosowaniu matchera wszystko działa poprawnie.
+Uniwersalny Matcher
+
+Istnieje matcher uniwersalny, który zawsze zwraca true. Jest nim ArgumentMatchers.any() - zastępuje prawie dowolną wartość parametru. Wyjątkiem są tutaj typy proste (boolean, int, long, etc.). Gdybyśmy chcieli to poprzedni przykład można zapisać następująco:
+
+    @Test
+    public void shouldSendEmailOnlyToAdminWithAny() {
+        // given
+        EmailService emailService = mock(EmailService.class);
+        // when
+        when(emailService.prepareEmailContentFormatting(any(), anyBoolean())).thenReturn("Treść Maila");
+    }
+1
+2
+3
+4
+5
+6
+7
+file_copy
+
+Matchery dla kolekcji
+
+Istnieją również gotowe matchery dla różnego typu kolekcji.
+
+        ArgumentMatchers.anySet();
+        ArgumentMatchers.anyList();
+        ArgumentMatchers.anyMap();
+        ArgumentMatchers.anyCollection();
+        ArgumentMatchers.anyIterable();
+1
+2
+3
+4
+5
+file_copy
+
+Przykład zastosowania
+
+public interface EmailService {
+    List<Email> filterOutAlreadySentEmails(List<Email> allEmails);
+}
+1
+2
+3
+file_copy
+
+    @Test
+    public void alreadySentEmails() {
+        // given
+        EmailService emailService = mock(EmailService.class);
+        List<Email> emails = new ArrayList<>();
+        // when
+        when(emailService.filterOutAlreadySentEmails(anyList())).thenReturn(emails);
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+file_copy
+
+Matchery dla Stringów
+
+Matchery, które pozwolą na sprawdzenie ciągu znaków. Do dyspozycji mamy:
+
+        ArgumentMatchers.contains("string part");
+        ArgumentMatchers.startsWith("string start");
+        ArgumentMatchers.endsWith("string end");
+        ArgumentMatchers.matches("regex");
+1
+2
+3
+4
+file_copy
+
+Najpotężniejszy to oczywiście matchers, który przyjmuje wyrażenie regularne, więc możemy sprawdzić praktycznie wszystko.
+Matchery warunkowe
+
+W teorii powinniśmy unikać dodawania warunków w testach, ale w praktyce różnie to bywa. Poniżej przedstawione są matchery warunkowe. Warunek podajemy jako wyrażenie lambda.
+
+        ArgumentMatchers.intThat(value -> value > 2);
+        ArgumentMatchers.longThat(value -> value < 100);
+        ArgumentMatchers.booleanThat(value -> !value);
+1
+2
+3
+file_copy
+
+W ramach przykładu, załóżmy, że mamy do zmockowania kod sprawdzający, czy dany wiek oznacza przełnoletniość:
+
+public interface AdultChecker {
+    boolean checkIfAdult(int age);
+}
+1
+2
+3
+file_copy
+
+Poniżej przykład mockowania oraz upewnienie się, że wszystko działa jak należy:
+
+    @Test
+    public void shouldCheckIfAdult() {
+        AdultChecker adultChecker = mock(AdultChecker.class);
+        when(adultChecker.checkIfAdult(intThat(age -> age < 18))).thenReturn(false);
+        when(adultChecker.checkIfAdult(intThat(age -> age >= 18))).thenReturn(true);
+
+        assertThat(adultChecker.checkIfAdult(5)).isFalse();
+        assertThat(adultChecker.checkIfAdult(30)).isTrue();
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+file_copy
+
+Ten kod ma zadanie wyłącznie instruktażowe. Test tworzy mocka, a następnie go weryfikuje. Nie jest tutaj sprawdzany kod biznesowy.
+
+Matchery traktujące null
+
+Pozostały matchery, które sprawdzą, czy przekazana wartość jest lub nie jest nullem.
+
+        ArgumentMatchers.notNull(); // to samo co ArgumentMatchers.isNotNull()
+        ArgumentMatchers.isNotNull(); // to samo co ArgumentMatchers.isNotNull()
+        ArgumentMatchers.isNull(); // to samo co ArgumentMatchers.notNull()
+        ArgumentMatchers.nullable(Clazz.class); // null albo wskazany typ (tutaj dla przykładu Clazz)

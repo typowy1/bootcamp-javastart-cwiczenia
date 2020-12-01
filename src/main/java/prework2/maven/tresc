@@ -1,0 +1,55 @@
+W procesie wytwarzania oprogramowania można wyróżnić wiele powtarzalnych czynności, które z czasem stają się na tyle irytujące, że chcielibyśmy je w jakiś sposób automatyzować. Jeżeli korzystasz z tego kursu to zapewne programujesz już od dłuższego czasu i nie raz spotkałeś się z problemem polegającym np. na:
+
+    pakowaniu aplikacji do formatu jar (Java ARchive) lub war (Web ARchive)
+    dołączaniu do projektu zewnętrznych bibliotek (JUnit, Hibernate, Spring itd.)
+
+W bardziej złożonych przypadkach problemy narastają ponieważ ciężko wyobrazić sobie sytuację, w której chcąc zdeployować nową wersję aplikacji na serwerze produkcyjnym najpierw wyrzucamy poprzednią, następnie wrzucamy nową i liczymy, że uda się ją uruchomić bez żadnych problemów. W realnym świecie proces wdrażania nowej wersji aplikacji przechodzi pewien proces, np.:
+
+    pobranie aktualnej wersji kodu źródłowego z repozytorium systemu kontroli wersji
+    kompilacja
+    uruchomienie testów jednostkowych
+    spakowanie aplikacji
+    uruchomienie testów integracyjnych
+    deployment aplikacji na serwer produkcyjny
+
+Ciężko sobie wyobrazić manualne wykonywanie tych wszystkich czynności co kilka dni, ponieważ byłoby to podejście rodzące potencjalnie kolejne problemy. Dodatkowo wszystkie te etapy można zautomatyzować, a tym samym oszczędzać czas i uodpornić się na błędy.
+
+Wszystkie powyższe rzeczy można zautomatyzować korzystając z narzędzia Maven oraz procesu ciągłej integracji, który omówimy w dalszej części kursu.
+
+Dwie największe zalety Mavena i jednocześnie powody, dla których większość ludzi z niego korzysta to:
+
+    automatyzacja procesu budowania aplikacji i jej pakowania do odpowiedniego formatu(jar/war/ear)
+    zarządzanie zależnościami - już nigdy więcej nie będziemy musieli męczyć się z ręcznym pobieraniem bibliotek w formacie jar, czy samodzielną konfiguracją classpath.
+
+ <project>
+ 	<properties>
+ 		<maven.compiler.source>10</maven.compiler.source>
+ 		<maven.compiler.target>10</maven.compiler.target>
+ 	</properties>
+
+ 	<name>HelloMaven</name>
+ 	<groupId>pl.javastart</groupId>
+ 	<artifactId>HelloMaven</artifactId>
+ 	<version>1.0.0-SNAPSHOT</version>
+ 	<modelVersion>4.0.0</modelVersion>
+ 	<packaging>jar</packaging>
+ </project>
+
+     name - dowolna nazwa
+     groupId - początkowy fragment pakietu aplikacji, najczęściej zgodnie z konwencją odwrócona domena twórcy oprogramowania
+     artifactid - unikalny identyfikator projektu, najczęściej jego nazwa, która stanowi dalszą część nazwy pakietów
+     version - wersja aplikacji. Najpopularniejsza konwencja składa się z oznaczenia wersji Major-Minor-Incremental-Kwalifikator, czyli tak jak u nas 1.0.0-SNAPSHOT lub np. 2.5.7-Final. Trzy pierwsze elementy oznaczają po prostu kolejne wersje, które zmieniamy zgodnie z polityką firmy lub własnym uznaniem. Kwalifikator wskazuje, czy jest to wersja rozwojowa (SNAPSHOT), czy też finalna i już się nie zmieni (Final). Jedyny kwalifikator, który ma istotne znaczenie to SNAPSHOT, pozostałe takie jak Final, Beta, Alpha są zależne od naszego uznania.
+     modelVersion - wersja schematu XML naszego pliku. W Mavenie w wersji 2 i 3 (z której korzystamy) wersja 4.0.0 jest jedyną dostępną.
+     packaging - wskazanie do jakiego formatu docelowo chcemy spakować naszą aplikację
+
+ W sekcji <properties> możemy ustawić dodatkowe opcje. W naszym przypadku jest to wersja Javy, z której korzystamy.
+
+ Sama konfiguracja to jednak za mało, żeby mówić aplikacji. Potrzebujemy jeszcze stworzyć klasę z metodą main(). Zacznijmy od tego, że Maven wykorzystuje podejście Convention over Configuration zwane również Coding by Convention (nie wszystkie zwroty w kursie będziemy tłumaczyli na język polski, ponieważ w użyciu najczęściej spotkamy się z oryginalną formą). Oznacza to, że Maven oczekuje od nas, że będziemy się trzymali pewnej konwencji nazywania folderów, pakietów, plików, a on zajmie się już całą resztą.
+ Podstawowe komendy, które będziemy wykorzystywali w Mavenie zawsze poprzedzone są wywołaniem samego mavena poprzez wpisanie w konsoli polecenia mvn (np. mvn --version, które wykorzystaliśmy podczas konfiguracji). Podstawowe cele (goals), które mamy do dyspozycji to:
+
+     clean - usuwa folder target generowany przez mavena, można to utożsamiać z wyczyszczeniem projektu do stanu pierwotnego
+     compile - kompiluje wszystkie pliki z kodami źródłowymi i kopiuje je do odpowiednich folderów w wygenerowanym folderze target.
+     package - najpierw kompiluje wszystkie pliki z kodami źródłowymi (cel compile), a następnie pakuje aplikację do wskazanego formatu (jar/war/ear) i umieszcza plik wynikowy w folderze target. Plik będzie miał domyślnie nazwę identyczną z identyfikatorem naszej aplikacji (artifactId) z doklejoną wersją.
+Ostatnim poleceniem, które chcemy przetestować jest mvn package. Przypomnijmy, że spowoduje ona skompilowanie wszystkich klas Javy i utworzenie spakowanego pliku wynikowego.
+
+Po odświeżeniu projektu zauważymy, że w folderze target pojawił się dodatkowy plik HelloMaven-1.0.0-SNAPSHOT.jar. Jego uruchomienie w tym momencie nie jest zbyt wygodne z powodu nie wskazania klasy startowej aplikacji w pliku MANIFEST. Wrócimy do tego zagadnienia w lekcji poświęconej konfiguracji wtyczek. Na tę chwilę chodziło o przedstawienie głównej idei korzystania z Mavena do automatyzowania budowania aplikacji.
