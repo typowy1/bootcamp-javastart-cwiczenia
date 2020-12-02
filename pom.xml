@@ -4,22 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cwiczenia</groupId>
-    <artifactId>pl.bootcamp.javastart.cwiczenia</artifactId>
+    <groupId>pl.bootcamp.javastart.cwiczenia</groupId>
+    <artifactId>cwiczenia</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!--    Pom.xml główny plik konfiguracyjny-->
+
     <properties>
-        <maven.compiler.source>14</maven.compiler.source>
-        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source> <!--  w jakiej wersji źródłowej jest ten projekt-->
+        <maven.compiler.target>14</maven.compiler.target> <!--  do jakiej kompilowac-->
+        <!--        treba podac z jakiej javy sie kożysta bo inaczej defeltowo ustawiona jest java5-->
         <mockito.version>3.3.3</mockito.version>
-        <!--        zmienna do wersji mockito-->
+        <junit5.version>5.7.0</junit5.version>
+        <!--        zmienna do wersji mockito i junit-->
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.7.0</version>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit5.version}</version><!--        zmienna do wersji junit w propertisach-->
             <scope>test</scope>
         </dependency>
 
@@ -40,7 +45,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito.version}</version>
+            <version>${mockito.version}</version><!--        zmienna do wersji mockito w propertisach-->
             <scope>test</scope>
         </dependency>
 

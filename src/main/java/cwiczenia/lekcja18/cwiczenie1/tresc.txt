@@ -1,0 +1,73 @@
+Eksport aplikacji z użyciem Mavena
+
+Treść zadania
+https://bootcamp.javastart.pl/konto/cwiczenie/1252
+
+comendy:
+1 podejscie
+klikam pakcage w maven lub w consoli mvn package i w targecie tworzy si ejar - spakowana aplikacja
+kopije jar do folderu na pulpicie, kopiuje tez folder input, zmieniam nazwe xxx.jar na app.jar
+otwieram folder w ktorym jes jar w cmd, klikam na sciezke i wpisuje cmd
+w cmd wpisuje java -jar app.jar
+
+2 podejscie
+tworze plik textowy i robie z niego run.bat, zmieniam xxx.txt na run.bat i otwieram w notepad++
+tam wpisuje komende z cmd java -jar app.jar zapisuej
+i teraz po kliknieciu 2 razy na run.bat aplikacja uruchomi sie
+
+
+
+Zadanie znajduje się w P:\Projekty\Bootcamp java\ćwiczenia od lekcji 18\lekcja18 Maven, JUnit, AssertJ, Mockito\cwiczeni1 Eksport aplikacji z użyciem Mavena
+
+
+Za pomocą mavena wyeksportuj projekt do wykonywalnego pliku *.jar który będzie można uruchomić na dowolnym komputerze który ma zainstalowaną Javę.
+
+Jako bazy użyj tego kodu źródłowego: http://git.javastart.pl/zadania/maven_pakowanie_aplikacji
+
+Aplikacja bierze obrazki z rozszerzeniem "jpg" z folderu input i tworzy dla nich miniaturki.
+
+W tym celu wykonaj następujące kroki:
+
+    Stwórz nowy projekt mavenowy
+    W pom.xml ustaw wersję javy i przeładuj projekt
+    Stwórz pakiet w src/main/java
+    Do pakietu skopiuj klasy
+    Do katalogu głównego skopiuj folder input
+    Do pliku pom.xml dodaj plugin maven-jar-plugin. Nie zapomnij go skonfigurować wskazując klasę z metodą main. Np pl.javastart.app.Main
+
+//plugin wskazuje startowego maina
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- Jar file entry point -->
+                            <mainClass>[TUTAJ_PODAJ_KLASE_Z_METODA_MAIN]</mainClass> // tu wklejamy pl.javastart.thumbnailgenerator.Main
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+7. Zbuduj projekt wykonując cel package
+
+8. Zbudowany plik trafi do folderu target. Skopiuj go w inne miejsce, lub przenawiguj konsolę do tej lokalizacji
+
+9. Uruchom projekt wpisując polecenie java -jar nazwa_pliku.jar
+
+comendy:
+1 podejscie
+klikam pakcage w maven lub w consoli mvn package i w targecie tworzy si ejar - spakowana aplikacja
+kopije jar do folderu na pulpicie, kopiuje tez folder input, zmieniam nazwe xxx.jar na app.jar
+otwieram folder w ktorym jes jar w cmd, klikam na sciezke i wpisuje cmd
+w cmd wpisuje java -jar app.jar
+
+2 podejscie
+tworze plik textowy i robie z niego run.bat, zmieniam xxx.txt na run.bat i otwieram w notepad++
+tam wpisuje komende z cmd java -jar app.jar zapisuej
+i teraz po kliknieciu 2 razy na run.bat aplikacja uruchomi sie

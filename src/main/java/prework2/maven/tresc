@@ -1,3 +1,6 @@
+
+MVN odpowiada za tworzenie projektu
+
 W procesie wytwarzania oprogramowania można wyróżnić wiele powtarzalnych czynności, które z czasem stają się na tyle irytujące, że chcielibyśmy je w jakiś sposób automatyzować. Jeżeli korzystasz z tego kursu to zapewne programujesz już od dłuższego czasu i nie raz spotkałeś się z problemem polegającym np. na:
 
     pakowaniu aplikacji do formatu jar (Java ARchive) lub war (Web ARchive)

@@ -1,0 +1,13 @@
+Podatek wg skali podatkowej
+https://bootcamp.javastart.pl/konto/cwiczenie/1253
+treść zadania
+
+Stwórz projekt który będzie liczył wartość podatku zgodnie z skalą podatkową.
+
+Użytkownik wprowadza swój roczny przychód, a program wylicza wartość podatku.
+
+Za pomocą testów jednostkowych przetestuj warunki brzegowe.
+
+Poprawność swojego rozwiązania możesz sprawdzić korzystając z kalkulatora na stronie: https://www.finanse.mf.gov.pl/web/wp/pp/kalkulatory/kalkulator-pit
+
+Na stronie wybierz opcję - "podatek dochodowy wg skali podatkowej" dla roku 2016. Kwoty przedstawione na stronie są wartościami zaokrąglonymi do pełnej złotówki.
