@@ -1,0 +1,43 @@
+Uruchomienie wielu asercji korzystając z AssertJ
+
+W AssertJ do uruchomienia wszystkich asercji korzysta się z SoftAssertions. Przerobienie powyższego testu wygląda następująco:
+
+    @Test
+    void multipleAssertionsTogetherWithAssertJ() {
+        Superhero hulk = Superheros.getHulk();
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(hulk.getAbilities()).contains("intelligence");
+        softAssertions.assertThat(hulk.getColor()).isEqualTo("blue");
+        softAssertions.assertThat(hulk.getPublisher()).isEqualTo("Disney");
+        softAssertions.assertAll(); // trzeba zamknąć inaczej test nie przejdzie
+    }
+
+
+Najpierw tworzymy obiekt SoftAssertions wywołując konstruktor, a następnie dodajemy do niego kolejne asercje. Po ich dodaniu wywołujemy sprawdzenie za pomocą softAssertions.assertAll(). Uwaga! Jeśli zapomnisz o uruchomieniu, to test przejdzie, bo nie zostanie wykonana żadna asercja!
+
+Wynik wygląda następująco:
+
+Multiple Failures (3 failures)
+-- failure 1 --
+Expecting:
+ <["regeneration", "agility", "superstrength"]>
+to contain:
+ <["intelligence"]>
+but could not find:
+ <["intelligence"]>
+
+at AssertJMultipleAssertions.multipleAssertionsTogether(AssertJMultipleAssertions.java:26)
+-- failure 2 --
+Expecting:
+ <"green">
+to be equal to:
+ <"blue">
+but was not.
+at AssertJMultipleAssertions.multipleAssertionsTogether(AssertJMultipleAssertions.java:27)
+-- failure 3 --
+Expecting:
+ <"Marvel">
+to be equal to:
+ <"Disney">
+but was not.
+at AssertJMultipleAssertions.multipleAssertionsTogether(AssertJMultipleAssertions.java:28)
