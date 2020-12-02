@@ -1,4 +1,5 @@
 Eksport aplikacji z użyciem Mavena
+materiały są w folderze P:\Projekty\Bootcamp java , plik  Maven.doc
 
 Treść zadania
 https://bootcamp.javastart.pl/konto/cwiczenie/1252
