@@ -1,0 +1,21 @@
+reść zadania
+
+Zadanie pochodzi ze strony: https://projecteuler.net/problem=1
+
+Tłumaczenie zadania:
+
+Liczby naturalne poniżej 10 które są wielokrotnością 3 lub 5 to: 3, 5, 6, oraz 9. Ich suma to 3+5+6+9 = 23.
+
+Wylicz sumę wszystkich wielokrotności 3 lub 5 poniżej 1000.
+
+Kroki do wykonania:
+
+    stwórz metodę która:
+        będzie przyjmowała liczbę poniżej której mają być sumowane wielokrotności
+        będzie zwracała sumę wielokrotności
+    stwórz testy które sprawdzą metodę:
+        dla wartości 10 wynik powinien wynosić 23
+        dla wartości 11 wynik powinien wynosić 33
+        dla wartości 12 wynik powinien wynosić 33
+        dla wartości 13 wynik powinien wynosić 45
+        dla wartości 16 wynik powinien wynosić 60
