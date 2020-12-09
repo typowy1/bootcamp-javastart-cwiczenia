@@ -1,0 +1,161 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-40-strumienie/lekcja/java-metody-terminalne
+
+czyli takie, które albo konsumują strumień, albo zwracają wynik, który nie jest strumieniem.
+
+
+
+**forEach()
+
+Jak nazwa sugeruje, metoda forEach() jest odpowiednikiem pętli for each. Jako argument powinniśmy do niej przekazać argument typu Consumer, czyli najczęściej wyrażenie lambda, które pozwoli skonsumować każdy obiekt strumienia. W celu wyświetlenia wszystkich obiektów ze strumienia można więc zapisać coś takiego:
+
+Stream<Course> courses = Stream.of(
+        new Course(1L, "Java", 199, "Programowanie"),
+        new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+        new Course(3L, "Tajniki Google", 299, "Marketing")
+);
+courses.forEach(course -> System.out.println(course));
+
+lub krócej z wykorzystaniem referencji do metody:
+
+courses.forEach(System.out::println);
+
+
+**count()
+
+  Metoda count() zwraca liczbę elementów w strumieniu w postaci liczby typu long. Jest to więc coś analogicznego np. do metody size() z kolekcji.
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  long streamSize = courses.count();
+  System.out.println(streamSize);
+
+
+  W wyniku otrzymamy wartość 3.
+
+
+  **min() i max()
+
+    Metody min() i max() pozwalają znaleźć najmniejszy, bądź największy obiekt w strumieniu. W obu przypadkach jako argument metody powinniśmy przekazać obiekt Comparatora. Może to być także odpowiednie wyrażenie lambda, które porówna obiekty. Wynikiem metody nie jest bezpośrednio najmniejszy, czy największy obiekt, tylko Optional. W przypadku pustego strumienia metody zwracają pustego Optionala.
+
+    Jeżeli chcemy ze strumienia pobrać kurs o najmniejszej cenie i go wyświetlić, to zapiszemy to tak:
+
+    Optional<Course> cheapestCourse = courses.min((c1, c2) -> Double.compare(c1.getPrice(), c2.getPrice()));
+    cheapestCourse.ifPresent(System.out::println);
+
+    lub łącząc operacje wykonywane na strumieniu i Optionalu, a także zamieniając wyrażenie lambda wywołaniem metody Comparator.comparingDouble().
+
+    courses.min(Comparator.comparingDouble(Course::getPrice))
+            .ifPresent(System.out::println);
+
+
+
+  anyMatch(), allMatch(), noneMatch()
+
+  Trzy powyższe metody operują na argumencie będącym predykatem. Pozwalają sprawdzić:
+
+      czy jakikolwiek element spełnia podane kryterium (anyMatch)
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  boolean under100 = courses.anyMatch(course -> course.getPrice() < 100);
+  if (under100)
+      System.out.println("Co najmniej jeden z kursów jest tańszy niż 100zł");
+
+
+      czy wszystkie elementy spełniają podane kryterium (allMatch),
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  boolean above10 = courses.allMatch(course -> course.getPrice() > 10);
+  if (above10)
+      System.out.println("Wszystkie kursy są droższe od 10zł");
+
+
+      czy żaden element nie spełnia podanego kryterium (noneMatch).
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  boolean above300 = courses.noneMatch(course -> course.getPrice() > 300);
+  if(above300)
+      System.out.println("Żaden z kursów nie jest droższy od 300zł");
+
+
+  toArray()
+
+  Tę metodę przedstawiałem ci już w poprzedniej lekcji. Zwraca ona tablicę z elementami, które znajdują się w strumieniu. W klasie Stream istnieją dwie przeciążone metody toArray(). Pierwsza zwraca tablicę typu Object[], co jest raczej mało przydatne, natomiast druga pozwala przekazać tablicę, do której elementy mają być wstawione. W tym drugim przypadku najczęściej będziemy przekazywali np. referencję na konstruktor tablicy odpowiedniego typu.
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  Course[] coursesArray = courses.toArray(Course[]::new);
+  System.out.println(Arrays.toString(coursesArray));
+
+
+
+  collect()
+
+  W większości programów, zamiast tablic, lepiej i wygodniej jest korzystać z kolekcji. Metoda collect() pozwala zebrać wszystkie elementy ze strumienia do wybranej kolekcji. Metoda ta istnieje w dwóch przeciążonych wersjach. Pierwsza jest dosyć skomplikowana i przyjmuje aż trzy parametry:
+
+      supplier (typu Supplier) - najczęściej referencja do konstruktora kolekcji, w której chcemy umieścić elementy,
+      accumulator (typu BiConsumer) - najczęściej referencja do metody, która pozwala dodawać elementy do kolekcji,
+      combiner (typu BiConsumer) - najczęściej referencja do metody, która pozwala łączyć dwie kolekcje w jedną, wykorzystywana wyłącznie przy wielowątkowym przetwarzaniu strumieni.
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  ArrayList<Course> coursesList = courses.collect(
+          ArrayList<Course>::new,
+          ArrayList::add,
+          ArrayList::addAll
+  );
+  System.out.println(coursesList);
+
+
+  Powyższy zapis jest na pierwszy rzut oka trochę mało czytelny i nie zachęca do korzystania z tej metody. Twórcy Javy zadbali więc o prostszą, przeciążoną wersję, która przyjmuje tylko jeden parametr typu Collector. Dodatkowo dostarczają kilka gotowych Collectorów, które pozwolą nam zebrać elementy strumienia do listy, czy zbioru. Wszystkie te Collectory znajdziesz jako stałe w klasie Collectors.
+
+  Stream<Course> courses = Stream.of(
+          new Course(1L, "Java", 199, "Programowanie"),
+          new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+          new Course(3L, "Tajniki Google", 299, "Marketing")
+  );
+  List<Course> coursesList = courses.collect(Collectors.toList());
+  System.out.println(coursesList);
+
+
+  Jeżeli chcesz zebrać elementy do zbioru, to analogicznie jako argument metody collect() należy przekazać Collector utworzony przy pomocy metody Collectors.toSet().
+
+  Set<Course> coursesSet = courses.collect(Collectors.toSet());
+  1
+  file_copy
+
+  Jeśli zależy ci na konkretnym typie kolekcji, a nie "jakiejś liście", albo "jakimś zbiorze", to możesz skorzystać z metody Collectors.toCollection(), do której możesz przekazać referencję do konstruktora odpowiedniej kolekcji.
+
+  Collection<Course> coursesTreeSet = courses.collect(Collectors.toCollection(TreeSet::new));
+
+
+  reduce()
+
+  Metoda reduce() pozwala na wykonanie redukcji elementów strumienia, do pojedynczego wyniku. Pozwala np. na zsumowanie elementów strumienia liczb, albo połączenia wszystkich napisów w strumieniu w jeden.
+
+  Stream<String> names = Stream.of("Ania", "Kasia", "Basia");
+  String allNames = names.reduce("", (result, next) -> result + next + " ");
+  System.out.println(allNames); //Ania Kasia Basia
+
+
+  Pierwszy argument metody reduce() to wartość początkowa, natomiast jako drugą przekazujemy funkcję łączącą aktualny wynik z kolejnym elementem strumienia.

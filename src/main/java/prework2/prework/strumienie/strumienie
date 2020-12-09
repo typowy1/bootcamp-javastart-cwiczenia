@@ -1,0 +1,24 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-40-strumienie/lekcja/java-podstawy-wprowadzenie-do-strumieni-new
+Oprócz wyrażeń lambda, do Javy 8 wprowadzono także nowy mechanizm w postaci strumieni. Strumień na pierwszy rzut oka może przypominać listę, a konkretnie listę wiązaną lub ewentualnie iterator, ponieważ stanowi on sekwencję obiektów ułożonych jeden za drugim.
+
+Strumienie najczęściej będą tworzone na podstawie kolekcji i będą pozwalały na ich wygodne przetwarzanie. W połączeniu z wyrażeniami lambda, strumienie umożliwiają na dużo bardziej ekspresywne wyrażenie operacji, które wcześniej wykonywane były na kolekcjach w klasycznych pętlach.
+
+Zanim jednak przejdziemy do przekształcania kolekcji na strumienie, pokażę ci jak tworzyć je samodzielnie.
+
+Strumienie w API Javy
+
+W Javie 8 niektóre klasy zostały zaktualizowane, aby wykorzystać potencjał strumieni. Przykładem takiej klasy jest BufferedReader, w którym pojawiła się metoda dodatkowa metoda lines() zwracająca strumień typu Stream<String>. Analogiczna metoda znajduje się od Javy 9 także w klasie Scanner i nazywa się tokens().
+
+Dzięki temu np. do wczytania całej zawartości pliku nie potrzebujesz już pętli. Zamiast tego, jeśli chcesz wczytać np. tekst z pliku o nazwie plik.txt i go wyświetlić, to możesz zapisać:
+
+Scanner scanner = new Scanner(new File("plik.txt"));
+Stream<String> tokens = scanner.tokens();
+tokens.forEach(System.out::println);
+
+
+lub krócej:
+
+Scanner scanner = new Scanner(new File("plik.txt"));
+scanner.tokens().forEach(System.out::println);
+
+Metoda forEach() jest metodą terminalną, jako jej argument przekazujemy konsumenta, który pozwoli wykonać pewną operację na każdym obiekcie w strumieniu - u nas jest to wyświetlanie.

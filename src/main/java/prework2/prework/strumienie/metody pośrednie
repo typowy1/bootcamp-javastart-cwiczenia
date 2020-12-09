@@ -1,0 +1,203 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-40-strumienie/lekcja/java-metody-posrednie
+****
+Metody pośrednie w strumieniach
+ które pozwalają wykonywać transformacje strumieni.
+
+
+
+
+Oprócz metod terminalnych istnieje także wiele metod pośrednich (intermediate), które pozwalają wykonywać transformacje strumieni. Na potrzeby przykładów będę posługiwał się tą samą klasą Course co w lekcji o metodach terminalnych.
+
+*****boxed()
+
+Metoda, która pozwala przekształcić strumień wartości typów prostych w strumień obiektów. Przykładowo pozwala zamienić IntStream w Stream<Integer>. Może to być przydatne np. w sytuacji, gdy ostatecznie wartości mają trafić do kolekcji, w których nie możemy przechowywać wartości typów prostych, tylko obiekty.
+
+List<Integer> collect = IntStream.rangeClosed(0, 10)
+        .boxed()
+        .collect(Collectors.toList());
+System.out.println(collect);
+
+W wyniku zobaczysz liczby od 0 do 10.
+
+
+***distinct()
+
+   Metoda służy do odfiltrowania ze strumienia duplikatów. Zwraca w wyniku strumień wyłącznie z unikalnymi obiektami. Do porównywania obiektów wykorzystywana jest metoda equals(), także powinna być ona poprawnie zdefiniowana w typie obiektów, które są przechowywane w strumieniach.
+
+   Stream<Course> courses = Stream.of(
+           new Course(1L, "Java", 199, "Programowanie"),
+           new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+           new Course(1L, "Java", 199, "Programowanie"),
+           new Course(3L, "Tajniki Google", 299, "Marketing"),
+           new Course(1L, "Java", 199, "Programowanie")
+   );
+   Stream<Course> uniqueStream = courses.distinct();
+   uniqueStream.forEach(System.out::println);
+
+   Po uruchomieniu powyższego programu zobaczysz wydruk z trzema obiektami. W strumieniu uniqueStream przechowywane są tylko unikalne obiekty. Duplikujące się obiekty "Java" zostały odfiltrowane z pierwotnego strumienia.
+
+
+
+****filter()
+
+    Jedna z najczęściej wykorzystywanych metod, która pozwala odfiltrować obiekty na podstawie podanego predykatu. Metoda filter() zwraca w wyniku strumień z obiektami, które spełniają zadany predykat. Przykładowo jeśli z oryginalnego strumienia chcesz odfiltrować te kursy, które są droższe niż 200zł, to należałoby zapisać:
+
+    Stream<Course> courses = Stream.of(
+                    new Course(1L, "Java", 249, "Programowanie"),
+                    new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+                    new Course(3L, "Zarządznie zespołem", 159, "Biznes"),
+                    new Course(4L, "Tajniki Google", 299, "Marketing"),
+                    new Course(5L, "Python od podstaw", 169, "Programowanie")
+            );
+    Stream<Course> expensiveCourses = courses.filter(course -> course.getPrice() > 200);
+    expensiveCourses.forEach(System.out::print);
+
+
+    W wyniku zobaczysz informację o dwóch kursach, "Java" oraz "Tajniki Google".
+
+
+****flatMap()
+
+    Metoda flatMap() pozwala spłaszczyć strukturę strumienia, jeżeli przechowywane w niej elementy to nie pojedyncze obiekty, ale tablice lub kolekcje obiektów. Możesz dzięki niej zmienić np. Stream<Course[]> na Stream<Course>.
+
+    Course[] cheapCourses = {
+            new Course(1L, "Java", 49, "Programowanie"),
+            new Course(2L, "Sztuka pisania", 79, "Rozwój osobisty"),
+    };
+    Course[] expensiveCourses = {
+            new Course(3L, "Tajniki Google", 299, "Marketing"),
+            new Course(4L, "Python od podstaw", 169, "Programowanie")
+    };
+    Stream<Course[]> courses = Stream.of(
+            cheapCourses,
+            expensiveCourses
+    );
+    Stream<Course> allCourses = courses.flatMap(Arrays::stream);
+    allCourses.forEach(System.out::println);
+
+
+    W strumieniu courses znajdują się dwa obiekty, konkretnie dwie tablice, z których każda ma po dwa obiekty. Po spłaszczeniu z wykorzystaniem metody flatMap(), w strumieniu allCourses znajdują się cztery obiekty Course, wyciągnięte z tablic. Metoda flatMap() jako argument przyjmuje funkcję mapującą kolekcję na strumień obiektów, więc przykładowo jeżeli posługujesz się strumieniem typu Stream<List<Course>>, to do metody flatMap() należałoby przekazać referencję do metody List::stream.
+
+
+****limit()
+
+    Jeżeli w swoich obliczeniach interesuje Cię tylko fragment strumienia, a nie wszystkie znajdujące się w nim obiekty, to możesz wykorzystać metodę limit() do ograniczenia liczby elementów. Metoda limit() zwraca w wyniku strumień z pierwszymi N elementami z oryginalnego strumienia, gdzie N jest parametrem metody. Metoda ta jest szczególnie użyteczna, jeśli strumień utworzony jest na bazie generatora i bez ograniczenia liczby elementów otrzymalibyśmy błąd OutOfMemoryError.
+
+    List<Integer> collect = IntStream.iterate(0, n -> n+1)
+            .limit(100)
+            .boxed()
+            .collect(Collectors.toList());
+    System.out.println(collect);
+
+    W wyniku zobaczysz liczby od 0 do 99. Zmieniając parametr w metodzie limit możesz sterować tym, ile obiektów ma trafić do zwracanego przez tę metodę strumienia.
+
+
+
+****map()
+
+    Metoda mapująca jest jedną z najczęściej wykorzystywanych operacji na strumieniach. Pozwala przekształcić strumień obiektów dowolnego typu na strumień obiektów innego typu. Jest to szczególnie użyteczne, jeżeli z obiektów chcesz np. wyciągnąć jakieś wartości i obliczyć statystyki.
+
+    Przykładowo jeżeli interesuje nas wyciągnięcie wszystkich tytułów książek, które dotyczą Javy, to najpierw możemy przekształcić Stream<Course> w Stream<String> (z tytułami), a następnie z takiego strumienia odfiltrujemy te tytuły, które zawierają słowo Java.
+
+    Stream<Course> courses = Stream.of(
+            new Course(1L, "Java", 249, "Programowanie"),
+            new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+            new Course(3L, "Java od podstaw", 159, "Programowanie"),
+            new Course(4L, "Tajniki Google", 299, "Marketing")
+    );
+    List<String> javaTitles = courses
+            .map(Course::getName) -- wyciągamy name i przekształcamy na stringa
+            .filter(name -> name.toLowerCase().contains("java"))
+            .collect(Collectors.toList());
+    System.out.println(javaTitles);
+
+
+    Metoda map() przyjmuje jako argument funkcję, która przekształca obiekt typu T w obiekt typu R (przy czym oba te typy mogą być takie same). Zamiast wyrażenia lambda, można do niej przekazać także referencję do metody. W naszym przypadku byłoby to Course::getName. W podanym przykładzie można też odwrócić kolejnością metodę filtrującą i mapującą, ostateczny wynik będzie taki sam.
+
+
+***sorted()
+
+   Metoda zwraca w wyniku strumień uporządkowany zgodnie z naturalnym porządkiem elementów (wyznaczanym przez implementację interfejsu Comparable). Istnieje także jej przeciążona wersja, do której można przekazać komparator, który pozwoli porównywać obiekty w niestandardowej kolejności. Ponieważ komparator jest interfejsem funkcyjnym, to można w jego miejsce przekazać także wyrażenie lambda lub referencję do metody porównującej ze sobą dwa obiekty.
+
+   Stream<Course> courses = Stream.of(
+           new Course(1L, "Java", 249, "Programowanie"),
+           new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+           new Course(3L, "Tajniki Google", 299, "Marketing"),
+           new Course(4L, "Java od podstaw", 159, "Programowanie")
+   );
+   Stream<Course> sortedCourses = courses
+           .sorted((c1, c2) -> Double.compare(c1.getPrice(), c2.getPrice()));
+   sortedCourses.forEach(System.out::println);
+
+
+   W powyższym kodzie oryginalny strumień zostanie posortowany na podstawie ceny rosnąco i kursy wyświetlą się od najtańszego do najdroższego.
+
+Od Javy 8 warto wykorzystywać metodę Comparator.comparing() w miejsce wyrażenia lambda, pozwoli to skrócić zapis i poprawić jego czytelność.
+
+Stream<Course> sortedCourses = courses.sorted(Comparator.comparingDouble(Course::getPrice));
+
+
+
+
+****peek()
+
+    Metoda peek() pozwala wykonać pewną czynność na każdym elemencie strumienia i zwraca w wyniku strumień z tymi samymi obiektami co w strumieniu wejściowym. Skoro metoda zwraca strumień z tymi samymi obiektami, to może się wydawać, że jest ona mało użyteczna, ale metoda ta może być przydatna np. do prostego debuggowania przez dodawanie dodatkowych wydruków w konsoli. Przykładowo możemy wywołać metodę peek() po wykonaniu dowolnej metody pośredniej na strumieniu.
+
+    Stream<Course> courses = Stream.of(
+            new Course(1L, "Java", 249, "Programowanie"),
+            new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+            new Course(3L, "Tajniki Google", 299, "Marketing"),
+            new Course(4L, "Java od podstaw", 159, "Programowanie")
+    );
+    List<String> javaTitles = courses
+            .filter(c -> c.getName().toLowerCase().contains("java"))
+            .peek(course -> System.out.println("filtered stream: " + course))
+            .map(Course::getName)
+            .collect(Collectors.toList());
+    System.out.println(javaTitles);
+
+
+    Metoda peek() pozwoli wyświetlić wszystkie kursy, które w nazwie mają słowo java. Metodę peek() możesz wywołać na dowolnym etapie transformacji strumienia, czyli np. równie dobrze mogłaby ona być wywołana po metodzie map().
+
+
+
+****skip()
+
+    Metoda limit() pozwalała ograniczyć liczbę elementów w strumieniu, natomiast metoda skip() pozwala pominąć pierwszych N elementów strumienia. Przykładowo jeżeli chcemy stworzyć strumień z posortowanymi kursami, ale z pominięciem trzech najtańszych, to zapiszemy:
+
+    Stream<Course> courses = Stream.of(
+            new Course(1L, "Java", 249, "Programowanie"),
+            new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+            new Course(3L, "Tajniki Google", 299, "Marketing"),
+            new Course(4L, "Java od podstaw", 159, "Programowanie"),
+            new Course(5L, "Python od podstaw", 139, "Programowanie")
+    );
+    Stream<Course> withoutCheapCourses = courses
+            .sorted(Comparator.comparing(Course::getPrice))
+            .skip(3);
+    withoutCheapCourses.forEach(System.out::println);
+
+
+    W powyższym kodzie najpierw sortujemy elementy strumienia, a następnie dzięki metodzie skip(), pomijamy trzy najtańsze kursy.
+
+
+
+***range():
+
+Możemy użyć statycznej metody of() by stworzyć IntStream:
+
+IntStream.of(1, 2, 3, 4, 5, 6)
+
+lub też posłużyć statyczną metodą range():
+
+IntStream.range(1, 6)
+                .forEach(System.out::println);
+
+Jak widzimy pierwsza wartość jest inclusive, zaś ostatnia exclusive.
+
+ IntStream.range(0,  100)
+ metoda range(0, 100) generuje dla nas liczby od 0 do 99
+
+
+****kod który ma się wykonać 10 razy
+IntStream().range(0,10).forEach(i ->....)

@@ -1,0 +1,208 @@
+https://javastart.pl/kurs/java/java-podstawy-temat-41-przetwarzanie-kolekcji/lekcja/java-podstawy-przetwarzanie-kolekcji-za-pomoc%C4%85-strumieni
+
+
+
+****Metody filter(), map() i collect()
+
+    Trzy powyżej wymienione metody są najczęściej wykorzystywane przy przetwarzaniu strumieni, więc musisz je zapamiętać. W klasach Stream istnieje także wiele metod dodatkowych, jednak raczej nie próbowałbym zapamiętać ich wszystkich, a zamiast tego raczej przeglądał listę w dokumentacji podczas rozwiązywania konkretnego problemu.
+
+    Pamiętaj, że operując na strumieniu stworzonym na bazie kolekcji i wykonując na nim operacje filter() lub map() nie modyfikujesz faktycznej kolekcji. Zawsze na końcu należy wykonać metodę collect(), która pozwoli zwrócić w wyniku nową kolekcję, którą przypiszemy do jakiejś referencji. Metodzie collect() należy przekazać parametr w postaci obiektu Collector. Najlepiej skorzystać z klasy pomocniczej Collectors, która zwróci dla nas odpowiedni obiekt tego typu za pomocą jednej z metod:
+
+        toList()
+        toSet()
+        toMap()
+
+    lub jeśli potrzebujemy konkretnego typu kolekcji, skorzystaj z metody:
+
+        toCollection(TypKolekcji::new)
+
+    Dzięki takiemu podejściu zyskujemy bardzo wygodną możliwość tworzenia różnych rodzajów kolekcji na żądanie. Prosty przykład:
+
+    import java.util.List;
+    import java.util.Set;
+    import java.util.TreeSet;
+    import java.util.stream.Collectors;
+    import java.util.stream.Stream;
+
+    class NumberStreams {
+        public static void main(String[] args) {
+            Stream<Integer> numStream = Stream.iterate(0, x -> x + 1);
+            // lista kwadratów kolejnych 100 liczb całkowitych
+            List<Integer> squareNumbers = numStream.map(x -> x*x)
+                                                    .limit(100)
+                                                    .collect(Collectors.toList());
+            // zbiór kwadratów liczb
+            Set<Integer> biggerThan5 = squareNumbers.stream()
+                                                    .filter(x -> x%10 ==0)
+                                                    .map(x -> x/10) //wykonuje działanie na elementach listy
+                                                    .collect(Collectors.toCollection(TreeSet<Integer>::new));
+
+            System.out.println("List");
+            squareNumbers.forEach(x -> System.out.print(x + " ; "));
+            System.out.println("\nSet");
+            biggerThan5.forEach(x -> System.out.print(x + " ; "));
+        }
+    }
+
+
+    Lista squareNumbers wygenerowana została na podstawie strumienia liczb całkowitych numStream. Wywołanie map(x -> x*x) powoduje podniesienie każdej liczby do kwadratu, a limit(100) ogranicza ilość liczb przetworzonych przez strumień do 100. Dalsze wartości nie są obliczane, bo strumienie są leniwe, czyli wykonują tak mało pracy jak to możliwe. Na końcu zwracamy listę za pomocą metody collect(), przekazując jej odpowiedni Collector.
+
+    Kolejny zbiór liczb tworzymy na podstawie strumienia uzyskanego z wcześniej utworzonej listy (strumień operuje więc na 100 liczbach). Strumień filtrujemy i zostawiamy tylko liczby podzielne przez 10. Liczby, które go spełniają dzielimy przez 10 w metodzie map(). Tym razem posłużyliśmy się w metodzie collect() Collectorem zbierającym dane do konkretnego typu kolekcji (TreeSet). Zauważ, że strumień nie operuje na oryginalnych wartościach kolekcji, więc elementy listy podzielne przez 10 nadal mają wartości takie jak 100, 400, ... a w zbiorze te wartości wynoszą 10, 40, ...
+
+
+    ****Powtarzalność kodu i referencje metod
+
+        Powyższy kod jest całkiem czytelny, ale posiada pewien mankament. W wielu sytuacjach będzie się zdarzało, że warunki filtrowania, czy mapowania strumienia będą powtarzalne. Zapisywanie więc wszędzie tego samego, np. filter(x -> x%5==0) byłoby stratą czasu i jakakolwiek zmiana wymagałaby poprawek w wielu miejscach kodu. Jeszcze gorzej sytuacja będzie wyglądała, gdy będziemy operowali na obiektach i będziemy odwoływali się do ich metod, bo wtedy warunki przestaną być czytelne.
+
+        Warto w takich sytuacjach zastępować wyrażenia lambda zwykłymi metodami, przerabiając poprzedni kod uzyskamy więc poniższy:
+
+        import java.util.List;
+        import java.util.Set;
+        import java.util.TreeSet;
+        import java.util.stream.Collectors;
+        import java.util.stream.Stream;
+
+        class NumberStreams {
+            private static final int DIVIDER = 10;
+
+            public static void main(String[] args) {
+                Stream<Integer> numStream = Stream.iterate(0, x -> x + 1);
+                // lista kwadratów kolejnych 100 liczb całkowitych
+                List<Integer> squareNumbers = numStream.map(NumberStreams::square)
+                                                        .limit(100)
+                                                        .collect(Collectors.toList());
+                //zbiór kwadratów liczb
+                Set<Integer> biggerThan5 = squareNumbers.stream()
+                                                        .filter(NumberStreams::isDividedBy)
+                                                        .map(NumberStreams::divide)
+                                                        .collect(Collectors.toCollection(TreeSet<Integer>::new));
+
+                System.out.println("List");
+                squareNumbers.forEach(x -> System.out.print(x + " ; "));
+                System.out.println("\nSet");
+                biggerThan5.forEach(x -> System.out.print(x + " ; "));
+            }
+
+            private static int square(int x) {
+                return x * x;
+            }
+
+            private static boolean isDividedBy(int x) {
+                return x % DIVIDER == 0;
+            }
+
+            private static int divide(int x) {
+                return x / DIVIDER;
+            }
+        }
+
+
+        Korzystanie z referencji do metod pozwoli ci pisać kod, który możesz wykorzystywać wielokrotnie.
+
+
+        ****Korzystanie z istniejących strumieni
+
+            Do generowania liczb wykorzystujemy metodę iterate(), jednak ponieważ w programowaniu często istnieje potrzeba operowania na strumieniach liczb, to w Javie 8 zdefiniowano gotowe klasy strumieni liczbowych takie jak:
+
+                IntStream
+                LongStream
+                DoubleStream
+
+            Nazwy wskazują, na jakich wartościach możemy na nich operować. Dodatkowo klasa String implementując interfejs CharSequence pozwala przekształcić dowolny napis w strumień wartości Integer. Przypomnijmy, że znaki typu char mogą być również reprezentowane w postaci odpowiadających im kodów w tabeli Unicodu, czyli po prostu liczb całkowitych. W celu przekształcenia napisu na strumień skorzystaj z metody:
+
+                "dowolnyString".chars()
+
+            Metoda main() naszego przykładu może więc zostać przerobiona na poniższą:
+
+            public static void main(String[] args) {
+                // lista kwadratów kolejnych 100 liczb całkowitych
+                List<Integer> squareNumbers = IntStream.range(0,  100)
+                                                        .map(NumberStreams::square)
+                                                        .boxed()
+                                                        .collect(Collectors.toList());
+                //zbiór kwadratów liczb
+                Set<Integer> biggerThan5 = squareNumbers.stream()
+                                                        .filter(NumberStreams::isDividedBy)
+                                                        .map(NumberStreams::divide)
+                                                        .collect(Collectors.toCollection(TreeSet<Integer>::new));
+
+                System.out.println("List");
+                squareNumbers.forEach(x -> System.out.print(x + " ; "));
+                System.out.println("\nSet");
+                biggerThan5.forEach(x -> System.out.print(x + " ; "));
+
+            }
+
+
+            metoda range(0, 100) generuje dla nas liczby od 0 do 99, które później podnosimy do kwadratu. Jeżeli chcemy przekształcić strumień IntStream w typ Stream<Integer> należy wywołać metodę boxed() a wtedy przerobić ją na listę.
+
+
+
+            ****Przetwarzanie wielowątkowe
+
+                Ostatnią z zalet strumieni w połączeniu z kolekcjami, którą omówimy jest wielowątkowe przetwarzanie kolekcji.
+
+                W Twoim komputerze uruchomionych jest w tym momencie wiele procesów, czyli w ogólności aplikacji i usług systemowych, które sprawiają, że wszystko po prostu działa. W ramach pojedynczego procesu może jednak być uruchomionych kilka wątków, co sprawia, że aplikacje mogę wykonywać obliczenia szybciej lub np. w jednym wątku przetwarzać dane a w innym odbierać dane od użytkownika i wykonywać te czynności jednocześnie.
+
+                Programowanie wielowątkowe przynosi korzyści zarówno na procesorach jedno jak i wielordzeniowych, ponieważ niezależnie od naszej architektury sprzętowej każdy proces otrzymuje co chwilę krótki przydział procesora - w przypadku aplikacji wielowątkowej na procesorze z pojedynczym rdzeniem, aplikacja otrzyma więc więcej przydziałów i zdąży wykonać więcej obliczeń.
+
+                wielowątkowość
+
+                Standardowo kolekcje w Javie do 7 włącznie nie dostarczały mechanizmów do przetwarzania i obliczeń wielowątkowych, jednak wraz z wprowadzeniem strumieni jest to już możliwe. Przydatne będzie szczególnie wtedy, gdy na każdym elemencie obiektu kolekcji będziemy wywoływać czasochłonną metodę, taką jak odczyt/zapis do zewnętrznej bazy danych, czy odczyt danych z internetu.
+
+                W celu zobrazowania korzyści napiszmy metodę, która będzie symulowała wykonywanie pewnych obliczeń przez czas 1 sekundy. W tym celu zastosujmy wykorzystywaną już wcześniej metodę Thread.sleep(), która usypia aktualnie wykonywany wątek na czas wskazany jako parametr metody.
+
+                Aplikacja z przetwarzaniem elementów strumieniowo w 1 wątku wyglądałaby następująco:
+
+                import java.util.Arrays;
+                import java.util.List;
+                import java.util.stream.Collectors;
+
+                class MultiThread {
+                    public static void main(String[] args) {
+                        List<Integer> ints = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+                        ints = ints.stream()
+                                .map(MultiThread::incrementValue)
+                                .collect(Collectors.toList());
+                    }
+
+                    public static int incrementValue(int x) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Przetwarzam " + x);
+                        return x + 1;
+                    }
+                }
+
+
+                Po uruchomieniu programu przez 10 sekund na ekranie co sekundę pojawi się kolejna linia tekstu. Całość można jednak znacznie przyspieszyć przetwarzając strumień wielowątkowo. W starszych wersjach Javy byłby to mocno skomplikowane, w Javie 8 wystarczy dopisać wywołanie jednej metody parallel():
+
+                import java.util.Arrays;
+                import java.util.List;
+                import java.util.stream.Collectors;
+
+                class MultiThread {
+                    public static void main(String[] args) {
+                        List<Integer> ints = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+                        ints = ints.stream()
+                                .parallel()
+                                .map(MultiThread::incrementValue)
+                                .collect(Collectors.toList());
+                    }
+
+                    public static int incrementValue(int x) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Przetwarzam " + x);
+                        return x + 1;
+                    }
+                }
+
+
+                Alternatywą jest wywołanie na kolekcji metody parallelStream() zamiast samego stream(). Zauważ jedną ważną rzecz, że przetwarzanie danych w ten sposób nie gwarantuje nam kolejności przetwarzania obiektów, wszystko zależy od tego, który wątek dostał ile czasu procesora.
