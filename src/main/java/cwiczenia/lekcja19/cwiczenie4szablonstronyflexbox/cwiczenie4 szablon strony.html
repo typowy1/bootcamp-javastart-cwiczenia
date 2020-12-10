@@ -1,0 +1,163 @@
+<!--https://bootcamp.javastart.pl/konto/cwiczenie/1265-->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona internetowa</title>
+    <style type="text/css">
+        /** {*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*}*/
+        /*!*<!-- do wszystkich elementow ustaw margin 0-->*!*/
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*marginesy do body i html*/
+
+        .main {
+            background: white; /*kolor szary*/
+        }
+
+        .header {
+            height: 48px;
+            box-shadow: 5px 5px 15px 5px #000000; /*cień da headera, z generatora https://html-css-js.com/css/generator/box-shadow/*/
+        }
+
+        /*.header a{*/
+        /*    height: 40px;*/
+        /*}*/
+        /*!*zmniejszamy obrazek*!*/
+
+        .header a img {
+            max-height: 80%;
+        }
+
+        /*zmniejszamy obrazek*/
+
+        .content {
+            padding: 20px; /*dodaliśmy marginesu do zawartoci strony*/
+        }
+
+        .center {
+            display: flex; /*przesunie nam nagłówek i tresc na prawa strone*/
+            flex-direction: row; /*dostosowanie do mobilki wyswietlane od lewej do prawej*/
+        }
+
+        @media (min-width: 768px) {
+            /*dostosowanie wyglądu do mobilki, powyzej tej wartosci bedzie wyswietlac sie jakna stronie*/
+            .center {
+                flex-direction: row;
+            }
+        }
+
+        .nav { /*odstępy między menu oraz trescia strony, oraz rozmiar czcionki menu*/
+            padding-top: 30px; /*więcej miejsca na górze dla menu*/
+            flex: 1 0 150px;
+            font-size: 20px;
+        }
+
+        .nav ul { /*menu bez kropek*/
+            list-style-type: none;
+        }
+
+        .nav ul li { /*odstępy między zakładkami menu*/
+            margin: 20px 0;
+        }
+
+        .footer {
+            display: flex;
+            background: black;
+            color: white;
+            height: 50px; /*kolor napisu*/
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<div class="main">
+
+    <div class="header">
+        <a href=" "> <!-- przenosi do pustej strony-->
+            <img src="https://bootcamp.javastart.pl/img/javastart-logo.png"/>
+        </a>
+    </div>
+    <div class="center"><!--główna treść-->
+
+        <nav class="nav"> <!--nawigacja za pomocą listy-->
+            <ul>
+                <li>O nas</li>
+                <li>Kontakt</li>
+                <li>Misja</li>
+                <li>Cele</li>
+            </ul>
+
+        </nav>
+        <main class="content">
+            <h1>Strona internetowa</h1>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta, augue ut blandit posuere,
+                eros diam hendrerit dui, eget semper turpis lorem a tellus. Maecenas et aliquet nibh. Integer feugiat
+                quam turpis, sed commodo nulla egestas ut. Vivamus eget ultricies dui. Sed faucibus finibus ultrices.
+                Nunc cursus molestie mauris, id porta mauris faucibus non. Nullam rutrum mauris lorem, luctus auctor
+                velit ullamcorper pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                inceptos himenaeos. Praesent convallis mauris quis magna congue interdum. Ut magna sem, congue eu magna
+                sed, placerat pellentesque massa. Donec condimentum orci sit amet felis posuere, a cursus nisl feugiat.
+                Duis egestas, sapien vel scelerisque faucibus, libero erat rutrum magna, eget hendrerit enim libero
+                semper est. In dolor ante, venenatis at aliquam non, tempor eu velit. Orci varius natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Integer ultrices accumsan tellus. Vestibulum
+                consequat fringilla mauris.
+            </p>
+            <p>
+                Vivamus eget scelerisque est, vel tempor ex. Praesent nulla quam, finibus vel egestas nec, viverra vel
+                augue. Integer dui lectus, hendrerit id malesuada id, posuere vulputate mauris. Suspendisse interdum
+                tincidunt metus, non ultricies turpis laoreet a. Pellentesque eu commodo neque. Mauris dolor turpis,
+                sodales nec pharetra id, scelerisque sit amet justo. Quisque at vestibulum ante. Integer eget rhoncus
+                massa. Quisque finibus placerat risus eu malesuada. Aliquam erat volutpat. Etiam ut accumsan nibh, a
+                congue dolor. Etiam congue aliquet erat, quis finibus tortor ultricies eleifend. Integer in dapibus est.
+            </p>
+            <p>
+                Cras ut ultricies neque. Sed volutpat dolor sit amet molestie dapibus. Sed porta tortor lectus, in
+                molestie massa aliquet nec. Mauris gravida eu arcu eget dictum. Donec fermentum mi in ornare euismod.
+                Nulla tincidunt vehicula dui, non rhoncus elit mollis ac. Donec vestibulum cursus maximus. Praesent
+                interdum scelerisque justo, eu aliquet augue pulvinar id. Quisque orci dolor, viverra in neque ac,
+                finibus pulvinar arcu. In non elit at tortor vehicula eleifend. Pellentesque fermentum justo diam.
+                Pellentesque sollicitudin laoreet lacus, rhoncus auctor velit euismod vitae. Nulla risus nisl, tincidunt
+                iaculis metus vitae, dignissim ultricies urna.
+            </p>
+            <p>Curabitur sed nunc pellentesque, aliquet purus vitae, bibendum ex. Vestibulum rhoncus gravida venenatis.
+                In sagittis porta arcu ac congue. Pellentesque vehicula dui risus, quis malesuada nulla tincidunt ut.
+                Sed eget odio ex. Ut mauris leo, pellentesque in metus eget, hendrerit facilisis elit. Fusce elementum
+                at turpis ut suscipit. Curabitur aliquam rutrum dictum. Vivamus id malesuada neque, sed dapibus libero.
+                Phasellus non pharetra odio. Fusce vitae diam non mauris molestie cursus. Nunc odio nibh, vestibulum
+                quis sagittis sed, commodo nec leo.
+            </p>
+            <p>Nam porttitor urna id ex eleifend, non lobortis mi dignissim. Nulla facilisi. Suspendisse porttitor, ex
+                at congue pulvinar, eros odio viverra dolor, at ultrices orci ligula eget lorem. Curabitur vulputate
+                ornare ipsum eu accumsan. Duis eget feugiat enim, et rhoncus tortor. In feugiat risus in turpis
+                hendrerit, a tempor elit vestibulum. Integer maximus sagittis tempor. Duis vel suscipit justo. Donec non
+                tortor eget lacus vehicula scelerisque. Vivamus quis rutrum lectus, ac iaculis elit. Fusce vel semper
+                ex, nec facilisis dui.
+            </p>
+
+        </main>
+    </div>
+
+
+    <div class="footer">
+        <span>copyright (r) 2020</span>
+    </div>
+</div>
+
+
+</body>
+</html>
