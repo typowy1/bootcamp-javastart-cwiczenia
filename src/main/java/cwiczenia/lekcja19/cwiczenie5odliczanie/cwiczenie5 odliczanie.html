@@ -1,0 +1,60 @@
+<!--https://bootcamp.javastart.pl/konto/cwiczenie/1266
+pełne rozwiązanie w rozwiązainiu-->
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Odliczanie</title>
+
+    <script type="text/javascript"> //<!--skrypt do odliczania-->
+    function start() { //<!--skrypt do odliczania definiujemy metode ktora bedzie uzyta w buton id start, w evencie onclick
+        console.log("start!");
+        const element = document.getElementById('countdownstart');
+        //   console.log(element) // sprawdzamy czy złapał element
+        // console.log(element.value); //sprawdzamy czy zebrał wartosć ktora jest wpisana na narazie sztywno,
+        const clock = document.getElementById('countdown_value'); //szukamy zegara odliczania
+        //clock.innerText = element.value; // numer wpisany w polu przez użytkownika będzie wyświetlany w zegarze po wciśnięciu start
+        const startButton = document.getElementById('START');
+        startButton.disabled = true;// buton sie wyłaczy na czas odliczania
+
+        let timer = element.value * 1000; //wartość wpisana przez użytkownika, dana w zegarze jako startowa, przekształcenie na milisekundy
+        const delta = 22;
+
+        const update = function () {// liczba wpisana przez użytkownika pojawi sie w zegarze po 1 sekundzie
+            timer = timer - delta;
+            //61 * 1000 = 6000 -> 01:01.000
+
+            const minutes = Math.floor(timer / (60 * 1000));
+            const seconds = Math.floor(timer % (60 * 1000) / 1000);
+            const miliSeconds = (timer % 1000);
+
+            clock.innerText = String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0")
+                + "." + String(miliSeconds).padStart(3, "0");
+
+            if (timer > 0) {
+                setTimeout(update, delta);
+            } else {
+                startButton.disabled = false;
+            }
+        };
+        update();
+    }
+
+    </script>
+</head>
+<body>
+
+<div style="width: 500px; margin: 50px auto; text-align: center"><!--wyświetli się na środku-->
+    <h1>Odliczanie</h1>
+
+    <input type="number" id="countdownstart" value="10"/> <br> <!-- będzie pod inputem a nie z boku-->
+
+    <button id="START" style="margin-top: 30px" onclick="start()">Start</button>
+    <br> <!-- podpiname event akcji onclick z metodą startt()-->
+
+    <span style="display: block; margin-top: 20px" id="countdown_value">00:00:000</span> <!--odliczanie-->
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 package prework2.prework.kolekcja_i_metody.ComparableComparator.Comparator1;
 
-import prework.kolekcja_i_metody.ComparableComparator.Comparable1.Product;
+import prework2.prework.kolekcja_i_metody.ComparableComparator.Comparable1.Product;
 
 import java.util.Arrays;
 import java.util.Comparator;

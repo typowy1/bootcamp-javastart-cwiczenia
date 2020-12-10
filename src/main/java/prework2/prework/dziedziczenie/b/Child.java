@@ -1,6 +1,6 @@
 package prework2.prework.dziedziczenie.b;
 
-import prework.dziedziczenie.a.Parent;
+import prework2.prework.dziedziczenie.a.Parent;
 
 public class Child extends Parent {
 

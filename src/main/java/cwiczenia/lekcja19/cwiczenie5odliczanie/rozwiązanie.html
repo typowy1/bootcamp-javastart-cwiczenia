@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Odliczanie</title>
+
+    <script type="text/javascript">
+        function start() {
+            console.log('start!');
+            const element = document.getElementById('countdownstart');
+            const startButton = document.getElementById('start');
+            startButton.disabled = true;
+            console.log(element.value);
+
+            const valueDisplay = document.getElementById('countdown_value');
+
+            const delta = 22;
+
+            const finish = Date.now() + element.value * 1000;
+
+            const update = function () {
+
+                const timer = Math.max(finish - Date.now(), 0)
+
+                // 61 * 1000 = 61000 -> 01:01.000
+
+                const minutes = Math.floor(timer / (60 * 1000));
+                const seconds = Math.floor((timer % (60 * 1000)) / 1000);
+                const miliseconds = (timer % 1000);
+
+                valueDisplay.innerText = String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0") + "." + String(miliseconds).padStart(3, "0");
+
+                if (timer > 0) {
+                    setTimeout(update, delta);
+                } else {
+                    startButton.disabled = false;
+                }
+            };
+
+            update();
+        }
+    </script>
+</head>
+<body>
+
+<div style="width: 500px; margin: 50px auto; text-align: center">
+
+    <h1>Odliczanie</h1>
+
+    <input type="number" id="countdownstart" value="10"/> <br>
+
+    <button id="start" style="margin-top: 30px" onclick="start()">START</button>
+    <br>
+
+    <span style="display: block; margin-top: 30px" id="countdown_value">00:00.000</span>
+</div>
+
+</body>
+</html>
