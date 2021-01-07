@@ -1,0 +1,9 @@
+rozwiazanie https://github.com/typowy1/lekcja20_cwiczenie1_pierwsza_aplikacja
+
+Pierwsza aplikacja w Spring MVC
+Treść zadania
+
+    Stwórz projekt w korzystając z Spring Boot
+    Dodaj kontroler oraz metodę która będzie się wywoływała po wejściu na stronę „http://localhost:8080/testy/test1”. Na stronie powinien wyświetlany być komunikat: „Cześć tutaj <twoje_imie>. Wszystko działa!”.
+    Dodatkowo oprócz komunikatu wyświetl w konsoli informację z numerem IP osoby która otworzyła stronę
+    Poproś sąsiada, żeby otworzył Twoją stronę internetową, sprawdź czy wszystko działa zgodnie z założeniami
