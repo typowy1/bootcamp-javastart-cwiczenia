@@ -11,10 +11,60 @@ Linki powinny prowadzić do podstron:
     http://localhost:8080/zwierzak?imie=Azor
     http://localhost:8080/zwierzak?imie=Rudy
 
+    Widok ten zawiera:
+
+        Taki sam baner jak na stronie głównej
+        Link do strony głównej. Jego naciśnięcie powinno ponownie wyświetlić stronę główną
+        Nagłówek z nazwą zwierzaka
+        Opis zwierzaka
+
+
 moje
 https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko
 
 javastart
 http://git.javastart.pl/rozwiazania/schronisko-1-413123
 
+
 2. schronisko 2
+
+Treść zadania
+
+Zaktualizuj stronę główną.
+
+Dodaj:
+
+    wyświetlanie wszystkich zwierząt zapisanych w aplikacji korzystając z pętli th:each
+    dodaj zdjęcie do każdego elementu
+    kliknięcie na zdjęcie, tytuł lub opis powinno przekierowywać na stronę ze szczegółami
+
+moje
+https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko
+
+javastart
+http://git.javastart.pl/rozwiazania/schronisko-2-4141421
+
+
+3. Gatunki i filtrowanie
+https://bootcamp.javastart.pl/konto/cwiczenie/1276
+Na stronie głównej dodaj możliwość wyboru gatunku
+
+Po naciśnięciu na kategorię wyświetlane są tylko zwierzęta danego gatunku. Przykładowo po naciśnięciu „Koty”, zobaczymy tylko jeden element na liście
+
+moje
+https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko
+
+javastart
+http://git.javastart.pl/rozwiazania/schronisko-3-64234
+
+
+4.Dodawanie zwierzaków - https://bootcamp.javastart.pl/konto/cwiczenie/1279
+Do strony głównej dodaj link z możliwością dodawania zwierzaka
+Po jego naciśnięciu przechodzimy do strony: z formularzem dodawania zwierzaka
+Wypełnienie wszystkich pól i naciśnięcie przycisku „Dodaj” powoduje dodanie zwierzaka i przeniesienie użytkownika na stronę ze szczegółami
+
+moje
+https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko
+
+javastart
+http://git.javastart.pl/rozwiazania/schronisko-4-41941
