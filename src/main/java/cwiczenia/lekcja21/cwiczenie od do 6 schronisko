@@ -70,7 +70,7 @@ javastart
 http://git.javastart.pl/rozwiazania/schronisko-4-41941
 
 
-5. Schronisko #5 - Edycja
+5. Schronisko #5 - Edycja https://bootcamp.javastart.pl/konto/cwiczenie/1280
 Dodaj możliwość edycji ogłoszenia o zwierzaku.
 
 Do formularza edycji powinien prowadzić link z strony z szczegółami zwierzaka. Po zatwierdzeniu zmian użytkownik powinien zostać przekierowany na stronę z szczegółami zwierzaka.
