@@ -68,3 +68,14 @@ https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko
 
 javastart
 http://git.javastart.pl/rozwiazania/schronisko-4-41941
+
+
+5. Schronisko #5 - Edycja
+Dodaj możliwość edycji ogłoszenia o zwierzaku.
+
+Do formularza edycji powinien prowadzić link z strony z szczegółami zwierzaka. Po zatwierdzeniu zmian użytkownik powinien zostać przekierowany na stronę z szczegółami zwierzaka.
+
+moje
+https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko   - tu nie dokończ działa lepiej zerknąć na rozwiązanie javastart
+javastart
+http://git.javastart.pl/rozwiazania/schronisko-5-174322
