@@ -79,3 +79,19 @@ moje
 https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko   - tu nie dokończ działa lepiej zerknąć na rozwiązanie javastart
 javastart
 http://git.javastart.pl/rozwiazania/schronisko-5-174322
+
+
+6. Sortowanie i filtrowanie
+
+https://bootcamp.javastart.pl/konto/cwiczenie/1280
+Treść zadania
+
+Dodaj możliwość sortowania zwierzaków po nazwie (poprzez kliknięcie linka na stronie głównej) – sortowanie powinno również działać w przypadku, gdy wybrana jest kategoria
+
+Dodaj wyszukiwarkę, która zwróci listę wszystkich zwierzaków, których nazwa zawiera wyszukiwaną frazę, wielkość liter nie powinna mieć znaczenia. Przykładowo dla frazy "bal"
+powinny być wyszukane zwierzaki o imionach typu "Balbina", "Baleron", "Robal"
+
+moje
+https://github.com/typowy1/lekcja21-czwiczenia-1-6-schronisko  - tu nie dokończ działa lepiej zerknąć na rozwiązanie javastart
+javastart
+http://git.javastart.pl/rozwiazania/schronisko-6-147891
