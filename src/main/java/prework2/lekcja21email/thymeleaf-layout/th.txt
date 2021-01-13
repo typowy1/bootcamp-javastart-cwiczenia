@@ -1,0 +1,28 @@
+https://bootcamp.javastart.pl/konto/zajecia/292
+https://www.youtube.com/watch?v=VWtBaEhQY1g&feature=emb_title
+https://github.com/typowy1/lekcja21-thymeleaf-layouty-material
+P:\Projekty\Bootcamp java\Spring ćwiczenia i prweork\lekcja22-thymeleaf-layouty-material
+
+
+
+potrzebna jest dependencja
+<dependency>
+  <groupId>nz.net.ultraq.thymeleaf</groupId>
+  <artifactId>thymeleaf-layout-dialect</artifactId>
+  <version>2.0.5</version>
+</dependency>
+
+i klasę konfiguracyjną
+
+@Configuration
+public class ThymeleafConfig {
+
+    //configuracja thymeleafa layout
+    @Bean
+     @Bean
+        public LayoutDialect layoutDialect() {
+            return new LayoutDialect();
+        }
+
+        na stronach na któryc ma się wyświetlic layout dodajemye w html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+}

@@ -1,0 +1,20 @@
+Spring MVC - Lista produktów jako lista i tabela https://bootcamp.javastart.pl/konto/cwiczenie/1282
+Treść zadania
+
+Stwórz program w Spring Boot / Spring MVC który:
+
+    na stronie głównej będzie posiadał formularz umożliwiający dodanie produktu (nazwa i cena)
+    na stronie /lista będzie wyświetlana lista produktów wraz z sumą ceny
+    na stronie /tabela będzie wyświetlana tabela z wszystkimi produktami wraz z sumą ceny
+
+Punkty:
+
+    dodawanie – 1pkt
+    wyświetlanie listy – 1pkt
+    wyświetlanie tabeli – 1pkt
+
+moje
+
+
+javastart
+http://git.javastart.pl/rozwiazania/spring-mvc-thymeleaf-produkty-lista-tabela-142132

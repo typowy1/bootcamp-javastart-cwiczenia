@@ -1,0 +1,12 @@
+wysyałka maili za pomocą apache commons email
+zaciągamy dependencje
+
+ <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.5</version>
+        </dependency>
+    </dependencies>
+
+    reszte w klasie SendEmail
