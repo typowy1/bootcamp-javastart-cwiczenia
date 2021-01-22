@@ -1,0 +1,31 @@
+1. https://javastart.pl/kurs/technologie-webowe/web-bazy-danych/lekcja/web-bazy-danych-wprowadzenie
+2. https://javastart.pl/kurs/technologie-webowe/web-bazy-danych/lekcja/web-instalacja-mysql
+3. https://javastart.pl/kurs/technologie-webowe/web-bazy-danych/lekcja/web-sql-testowa-baza-danych
+
+Lączenia z bazą danych przez cmd = mysql -uroot -p
+zakończenie dzialania = exit
+
+Każda kolumna tabeli powinna mieć określony typ danych. Typy danych dostępne w MySQL są podobne do tych, które znajdziemy np. w Javie. Możemy wyróżnić m.in.:
+
+    TINYINT - małe liczby całkowite, które odpowiadają typowi byte z Javy,
+    INTEGER / INT - liczby całkowite,
+    BIGINT - duże liczby całkowite,
+    DECIMAL - liczby zmiennoprzecinkowe (odpowiednik BigDecimal),
+    DOUBLE_PRECISION / DOUBLE - liczby zmiennoprzecinkowe (odpowiednik double),
+    CHAR(length) - ciąg znaków o stałej długości length,
+    VARCHAR(length) - ciąg znaków o zmiennej długości i maksymalnej długości równej length,
+    BOOL / BOOLEAN - wartość logiczna, która w przypadku MySQL jest traktowana tak samo jak typ TINYINT z wartością 0 lub 1.
+
+Oprócz tego MySQL wspiera kilka typów danych dedykowanych dla dat, format JSON, a nawet typ BLOB, dzięki któremu w bazie danych możemy zapisać dane binarne, czyli np. jakiś obraz.
+
+
+Zapytania w języku SQL dzielimy na trzy kategorie:
+
+    DQL (Data Query Language) - zapytania pozwalające pobierać dane z bazy danych,
+    DML (Data Manipulation Language) - zapytania służące do manipulacji danymi, czyli ich dodawanie, aktualizacja i usuwanie,
+    DDL (Data Definition Language) - zapytania służące do tworzenia bazy danych, tabel i relacji między nimi,
+    DCL (Data Control Language) - zapytania służące do definiowania kontroli dostępu (określanie kto ma, a kto nie ma dostępu do bazy danych).
+
+Nas najbardziej będą interesowały dwie pierwsze kategorie, choć w osobnej lekcji poruszymy także podstawy projektowania baz danych i zapytania typu DDL.
+
+Typy danych w dokumentacji MySQL https://dev.mysql.com/doc/refman/8.0/en/data-types.html

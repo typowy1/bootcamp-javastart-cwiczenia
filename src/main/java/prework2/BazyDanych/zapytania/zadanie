@@ -1,0 +1,83 @@
+https://javastart.pl/kurs/technologie-webowe/web-baz-sql/cwiczenie/web-db-sql-cw-statystyki-swiata
+
+Ćwiczenie
+
+Pobierz ze strony MySQL bazę danych zawierającą informacje na temat krajów i miast świata. Przejdź w tym celu do strony i w sekcji Example Databases pobierz archiwum world database. Następnie korzystając z MySQL Workbencha wybierz opcję File > Run SQL Script i wskaż plik sql wypakowany z pobranego archiwum.
+
+Przeanalizuj strukturę bazy danych, a następnie zdefiniuj następujące zapytania:
+
+    wyświetl informację o wszystkich polskich miastach,
+    wyświetl informacje na temat miasta o największej populacji,
+    wyświetl informacje na temat 3 krajów o największej populacji,
+    wyświetl wszystkie języki używane w Stanach Zjednoczonych i posortuj je od najbardziej do najmniej popularnych,
+    zmień liczbę ludności w Warszawie na 1,7 miliona,
+    usuń z bazy danych informacje na temat Sosnowca.
+
+    Podpowiedź
+
+    Baza danych składa się z trzech tabel. Przeanalizuj nazwy kolumn i wzorując się na zapytaniach z lekcji sformułuj odpowiednie zapytania.
+
+
+
+Przejdźmy do formułowania zapytań.
+
+1. wyświetl informację o wszystkich polskich miastach.
+
+W tabeli city znajduje się kolumna CountryCode, która przechowuje kod kraju, do którego przynależy dane miasto. W przypadku Polski kod kraju to "POL".
+
+SELECT * FROM city WHERE CountryCode = 'POL';
+1
+file_copy
+
+2. wyświetl informacje na temat miasta o największej populacji.
+
+Informacja o populacji miasta zapisana jest w kolumnie Population tabeli city. W wyniku chcemy uzyskać jedno miasto, więc wykorzystujemy w zapytaniu klauzulę ORDER BY i ograniczenie LIMIT.
+
+SELECT * FROM city ORDER BY Population DESC LIMIT 1;
+1
+file_copy
+
+3. wyświetl informacje na temat 3 krajów o największej populacji.
+
+Rozwiązanie będzie podobne do poprzedniego, ale tym razem odwołujemy się do tabeli country.
+
+SELECT * FROM country ORDER BY Population DESC LIMIT 3;
+1
+file_copy
+
+4. wyświetl wszystkie języki używane w Stanach Zjednoczonych i posortuj je od najbardziej do najmniej popularnych,
+
+Tym razem pobieramy dane z tabeli countrylanguage.
+
+SELECT * FROM countrylanguage WHERE CountryCode = 'USA' ORDER BY Percentage DESC;
+1
+file_copy
+
+5. zmień liczbę ludności w Warszawie na 1,7 miliona,
+
+Najpierw warto znaleźć Warszawę w bazie i sprawdzić jaką mamy zapisaną liczbę ludności. Wykonujemy zapytanie:
+
+SELECT * FROM city WHERE Name = 'Warszawa';
+1
+file_copy
+
+Jeżeli w edytorze mamy włączony tryb safe updates, to trzeba wykorzystać klucz główny, czyli ID. Jeżeli go wyłączymy to możemy równie dobrze zapisać zapytanie wykorzystujące nazwę.
+
+#1
+UPDATE city SET Population = 1700000 WHERE ID = 2928;
+#2
+UPDATE city SET Population = 1700000 WHERE Name = 'Warszawa';
+1
+2
+3
+4
+file_copy
+
+6. usuń z bazy danych informacje na temat Sosnowca.
+
+Podobnie jak wcześniej najpierw wyszukujemy Sosnowiec i usuwamy go na podstawie odnalezionego id:
+
+#1
+DELETE FROM city WHERE ID = 2941;
+#2
+DELETE FROM city WHERE Name = 'Sosnowiec';

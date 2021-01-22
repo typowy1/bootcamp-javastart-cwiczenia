@@ -1,0 +1,63 @@
+https://javastart.pl/kurs/technologie-webowe/web-sql-projektowanie/lekcja/web-db-tworzenie-usuwanie-bazy-tabel
+
+ utf8mb4_polish_ci; - polskie znaki
+ COLLATE umożliwia określenie sposobu porównywania znaków.
+
+ tworzenie tabeli:
+ CREATE TABLE social_network.user (
+ 	id INT PRIMARY KEY AUTO_INCREMENT,
+     first_name VARCHAR(30),
+     last_name VARCHAR(30),
+     email VARCHAR(50) NOT NULL UNIQUE,
+     password VARCHAR(30) NOT NULL,
+     age INT,
+     city VARCHAR(30)
+ );
+
+ usówanie tabeli
+ Jeżeli podasz nazwę tabeli, która nie istnieje, to wykonanie zapytania zakończy się błędem. Z tego powodu często spotkasz to zapytanie w wersji z dodatkowym ograniczeniem IF EXISTS:
+
+ DROP TABLE IF EXISTS user;
+
+ Usuwanie bazy danych
+
+ Usuwanie całej bazy danych jest równie proste i możesz to zrobić zapytaniem DROP DATABASE lub odpowiednikiem dedykowanym dla MySQL, czyli DROP SCHEMA.
+
+ # Wersja 1
+ DROP DATABASE social_network;
+ # Wersja 2
+ DROP SCHEMA social_network;
+ 1
+ 2
+ 3
+ 4
+ file_copy
+
+ Podobnie jak przy usuwaniu tabel, możesz tutaj wykorzystać dodatkową klauzulę IF EXISTS:
+
+ # Wersja 1
+ DROP DATABASE IF EXISTS social_network;
+ # Wersja 2
+ DROP SCHEMA IF EXISTS social_network;
+
+ Poszczególne kolumny, które można oznaczyć checkboxami oznaczają:
+
+     PK - Primary Key. Klucz główny.
+     NN - Not Null. Kolumna nie może mieć wartości null.
+     UQ - Unique. Wartość musi być unikalna.
+     BIN - Binary. Przydatne jeżeli np. w bazie danych chcesz przechowywać grafiki, albo inne dane binarne.
+     UN - Unsigned. Pozwala przechowywać liczby bez znaku. Dzięki temu w kolumnie typu INT możemy przechowywać dużo większe liczby dodatnie niż w przypadku zwykłej kolumny typu INT, ale nie możemy w niej zapisać liczb ujemnych.
+     ZF - Zero Fill. Pozwala wypełnić kolumnę typu numerycznego dodatkowymi zerami. Przykładowo jeżeli w bazie będą jakieś wartości liczbowe i chcemy, aby zawsze były one pięciocyfrowe, to zamiast liczby 15 zobaczymy 00015.
+     AI - Auto Increment. Pole będzie automatycznie inkrementowane przy wstawianiu kolejnych rekordów.
+     G - Generated Column. Wartość kolumny może być generowana na podstawie wskazanej funkcji.
+
+
+Zapytanie CREATE DATABASE w dokumentacji MySQL: https://dev.mysql.com/doc/refman/8.0/en/create-database.html
+
+Zapytanie CREATE TABLE w dokumentacji MySQL: https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html
+
+Zapytanie DROP TABLE w dokumentacji MySQL: https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
+
+Zapytanie DROP DATABASE w dokumentacji MySQL: https://dev.mysql.com/doc/refman/8.0/en/drop-database.html
+
+Zapytania z tej lekcji: https://github.com/javastartpl/technologie-webowe/blob/master/sql/ddl/create_db_table.sql
