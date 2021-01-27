@@ -1,0 +1,55 @@
+https://javastart.pl/kurs/technologie-webowe/web-baz-sql/lekcja/web-sql-join
+
+SELECT * FROM employees
+	WHERE emp_no IN (
+		SELECT emp_no FROM titles WHERE title = 'Engineer'
+	)
+;
+SELECT
+*
+FROM
+employees, titles
+ WHERE
+ employees.emp_no = titles.emp_no
+ AND
+ title = 'Engineer';
+
+ SELECT first_name, last_name, title, from_date, to_date
+ FROM
+ employees, titles
+ WHERE
+ employees.emp_no = titles.emp_no
+ AND
+ title = 'Engineer'
+ ;
+
+ SELECT
+ 	first_name, last_name, title, from_date, to_date
+ FROM
+ 	employees JOIN titles ON employees.emp_no = titles.emp_no
+ WHERE
+     title = 'Engineer'
+ ;
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ file_copy
+
+ Przy pomocy klauzuli JOIN wskazujemy, że łączymy ze sobą dwie tabele, a w części ON zapisujemy warunek złączenia. W naszym przypadku wskazujemy, że łączymy ze sobą tabele employees i titles, a wiersze powinny być połączone na podstawie równości kolumn emp_no. Zapis z wykorzystaniem klauzuli JOIN jest bardziej czytelny od tego z wymienianiem tabel po przecinku, ponieważ w jasny sposób rozdzielamy to skąd chcemy pobrać dane (FROM) od warunków selekcji w klauzuli WHERE.
+
+ Używając LEFT JOIN / LEFT OUTER JOIN informacja o tym pracowniku zostanie także uwzględniona, ale kolumny title, from_date i to_date będą miały wartość NULL.
+ SELECT
+ 	employees.emp_no, first_name, last_name, title, from_date, to_date
+     FROM
+     employees JOIN titles ON employees.emp_no = titles.emp_no;
+
+
+    LEFT OUTER JOIN lub krócej LEFT JOIN - pobiera te rekordy z tabeli znajdującej się po lewej stronie i do rekordów dodaje informacje z tabeli znajdującej się po prawej stronie o ile takie istnieją,
+    RIGHT OUTER JOIN lub krócej RIGHT JOIN - pobiera wszystkie rekordy z tabeli znajdującej się po prawej stronie i do rekordów dodaje informacje z tabeli znajdującej się po lewej stronie o ile takie istnieją,
+    FULL OUTER JOIN lub krócej FULL JOIN - pobiera wszystkie rekordy z obu tabel, nawet jeżeli nie mają one swojego odpowiednika w drugiej tabeli, z którą dokonujemy złączenia.
+
+

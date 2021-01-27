@@ -1,0 +1,114 @@
+SELECT*FROM employees.employees;
+SELECT gender=M FROM employees.departments;
+SELECT first_name, last_name, hire_date FROM employees;
+SELECT first_name, last_name, hire_date FROM employee;
+SELECT*FROM employees.employees ORDER BY last_name DESC, first_name DESC;
+SELECT*FROM employees.employees ORDER BY birth_date DESC LIMIT 10;
+SELECT*FROM employees WHERE gender = 'M';
+SELECT*FROM employees WHERE gender = 'M' AND hire_date >= '1990-01-01';
+SELECT*FROM
+employees
+WHERE
+gender='M' AND hire_date >= '1990-01-01'
+ORDER BY
+hire_date
+LIMIT
+10
+;
+INSERT INTO departments (dept_no, dept_name) VALUES('d010', 'Purchasing');
+INSERT INTO departments
+(dept_no, dept_name)
+VALUES
+('d011', 'Prurchasing'),
+('d012', 'Legal');
+
+DELETE FROM departments WHERE dept_name = 'Purchasing';
+DELETE FROM social_network.user;
+SELECT*FROM employees;
+
+UPDATE employees.employees SET first_name = 'Karol' WHERE emp_no = 10005;
+SELECT*FROM country ORDER BY Population DESC LIMIT 3;
+SELECT*FROM employees.titles WHERE title = 'Engineer';
+SELECT*FROM employees.titles WHERE emp_no = 10004;
+SELECT * FROM employees
+	WHERE emp_no IN (
+		SELECT emp_no FROM titles WHERE title = 'Engineer'
+	)
+;
+
+
+SELECT * FROM world.city ORDER BY Population DESC LIMIT 1;
+SELECT * FROM world.city WHERE Name = 'Warszawa';
+UPDATE world.city SET Population = 1700000 WHERE ID = '2928';
+SELECT * FROM world.city WHERE Name = 'Sosnowiec';
+SELECT * FROM world.city WHERE ID = 2941;
+DELETE FROM world.city WHERE ID = 2941;
+
+
+
+Join
+
+SELECT * FROM employees
+	WHERE emp_no IN (
+		SELECT emp_no FROM titles WHERE title = 'Engineer'
+	)
+;
+SELECT
+*
+FROM
+employees, titles
+ WHERE
+ employees.emp_no = titles.emp_no
+ AND
+ title = 'Engineer';
+
+ SELECT first_name, last_name, title, from_date, to_date
+ FROM
+ employees, titles
+ WHERE
+ employees.emp_no = titles.emp_no
+ AND
+ title = 'Engineer'
+ ;
+
+ SELECT * FROM employees
+	WHERE emp_no IN (
+		SELECT emp_no FROM titles WHERE title = 'Engineer'
+	)
+;
+SELECT
+*
+FROM
+employees, titles
+ WHERE
+ employees.emp_no = titles.emp_no
+ AND
+ title = 'Engineer';
+
+ SELECT first_name, last_name, title, from_date, to_date
+ FROM
+ employees, titles
+ WHERE
+ employees.emp_no = titles.emp_no
+ AND
+ title = 'Engineer'
+ ;
+ SELECT
+	first_name, last_name, title, from_date, to_date
+FROM
+	employees JOIN titles ON employees.emp_no = titles.emp_no
+WHERE
+    title = 'Engineer'
+;
+
+DELETE FROM titles WHERE emp_no = 10004;
+
+SELECT
+	employees.emp_no, first_name, last_name, title, from_date, to_date
+    FROM
+    employees JOIN titles ON employees.emp_no = titles.emp_no;
+
+    SELECT
+	employees.emp_no, first_name, last_name, title, from_date, to_date
+    FROM
+    employees LEFT JOIN titles ON employees.emp_no = titles.emp_no;

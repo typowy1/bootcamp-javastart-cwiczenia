@@ -1,0 +1,45 @@
+SQL #1 - Tworzenie tabeli, dodawanie i usuwanie rekordów
+Treść zadania
+
+Do każdego punktu zadania zdefiniuj osobne zapytanie.
+
+    Utwórz tabelę zakupy z kolumnami:
+
+    id – identyfikator, klucz główny, sam się zwiększa przy dodawaniu elementów do tabeli
+    nazwa – nazwa produktu max 50 znaków, nie może być pusta
+    producent – maksymalnie 50 znaków
+    opis – maksymalnie 200 znaków
+    cena produktu
+
+    Dodaj co najmniej 5 różnych rekordów do tabeli (niektóre produkty powinny mieć taką samą nazwę). Dodaj także 1 rekord, który będzie duplikatem (z innym id od oryginału)
+    Wyszukaj zakupy droższe niż 30zł
+    Wyszukaj zakupy wybranego producenta w cenie z pewnego zakresu. Warunek zdefiniuj w taki sposób, aby otrzymać w wyniku co najmniej jeden rekord
+    Wybierz jeden z rekordów i zmodyfikuj jego dwie kolumny
+    Usuń rekord będący duplikatem (zakładamy, że wiemy, który to rekord i jakie ma id)
+
+
+
+Rozwiązanie
+
+CREATE TABLE zakupy (
+	id bigint primary key auto_increment,
+    nazwa varchar(50) NOT NULL,
+    producent varchar(50),
+    opis varchar(200),
+    cena decimal(10, 2)
+);
+
+INSERT INTO zakupy(nazwa, producent, opis, cena)
+VALUES ('Masło', 'Mlekovia', 'Masełko do smarowania', 5.99),
+('Margaryna', 'PPHU Januszex', 'Przetworzone tłuszcze roślinne', 3.99),
+('Chleb', 'Piekarzex', 'Chlebek poranny', 2.00),
+('Masło', 'Mlekovia', 'Masełko do smarowania', 5.99),
+('Radler', 'Warka', 'Piwko z rana jak śmietana', 3.50);
+
+SELECT * from zakupy where cena > 30;
+
+SELECT * FROM zakupy WHERE producent = 'PPHU Januszex' AND cena BETWEEN 1 AND 30;
+
+UPDATE zakupy SET opis = 'Nie dla alkoholu!' WHERE opis LIKE '%Piwko%'; -- opis zawiera wyraz piwko
+
+DELETE FROM zakupy WHERE id = 4;

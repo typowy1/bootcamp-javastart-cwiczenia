@@ -1,0 +1,37 @@
+SQL #3 - Operacje na datach
+Treść zadania
+
+    Do tabeli zakupy dodaj kolumnę data_zakupu z datą i czasem zakupu.
+    Uzupełnij dane w tabeli różnymi datami
+    Wyszukaj zakupy zrobione w ciągu pierwszych 15 dni miesiąca
+    Wyszukaj zakupy zrobione w ciągu ostatnich 30 dni od aktualnej daty
+    Wyszukaj zakupy zrobione po godzinie 20:00
+    Wyświetl wszystkie zakupy posortowane w kolejności od zrobionych ostatnio do najstarszych
+
+
+    -- 1. Do tabeli zakupy dodaj kolumnę data_zakupu z datą i czasem zakupu.
+    ALTER TABLE `zakupy` ADD COLUMN `data` DATETIME;
+
+
+    -- 2. Uzupełnij dane w tabeli różnymi datami
+    UPDATE zakupy SET data = '2019-07-22 20:00' WHERE id = 1;
+    UPDATE zakupy SET data = '2019-07-22 20:01' WHERE id = 2;
+    UPDATE zakupy SET data = '2019-07-14 7:10'  WHERE id = 3;
+    UPDATE zakupy SET data = '2019-04-07 10:00' WHERE id = 5;
+
+    -- 3. Wyszukaj zakupy zrobione w ciągu pierwszych 15 dni miesiąca
+    SELECT * FROM zakupy
+    WHERE EXTRACT(DAY FROM data) <= 15;
+
+    -- 4. Wyszukaj zakupy zrobione w ciągu ostatnich 30 dni od aktualnej daty
+    SELECT * FROM zakupy
+    WHERE ABS(DATEDIFF(data, CURDATE())) <= 30; -- chodzi zeby było mniejsze równe - 30, DATEDIFF(data, CURDATE() to bada różnice między datami od aktualnej odejmuje date z kolumny i jak mniej niz 30 dni to zwraca, ABS to wartość absolutna czyli jak bedzie -30 to zrobi 30
+
+    -- 5. Wyszukaj zakupy zrobione po godzinie 20:00
+    SELECT * FROM zakupy
+    WHERE EXTRACT(HOUR FROM data) >= 20 AND EXTRACT(MINUTE FROM data) > 0 ;
+
+    -- 6. Wyświetl wszystkie zakupy posortowane w kolejności
+    -- od zrobionych ostatnio do najstarszych
+    SELECT * FROM zakupy
+    ORDER BY data DESC;

@@ -1,0 +1,38 @@
+Treść zadania
+
+    Policz średnią cenę zakupu
+    Policz sumę cen wszystkich zakupów
+    Przygotuj zapytanie które zaokrągli cenę produktów do części całkowitej
+    Wyświetl tylko najdroższy i najtańszy zakup
+    Wyszukaj zakupy kosztujące więcej niż średnia
+    Przygotuj zapytanie które zwróci tabelę z dodatkową kolumną informującą czy dany produkt jest droższy od średniej ceny wszystkich produktów
+
+     -- 1. Policz średnią cenę zakupu
+     SELECT AVG(cena) FROM zakupy;
+
+     -- 2. Policz sumę cen wszystkich zakupów
+     SELECT SUM(cena) FROM zakupy;
+
+     -- 3. Przygotuj zapytanie które zaokrągli cenę produktów do części całkowitej
+     SELECT id, nazwa, producent, opis, ROUND(cena) FROM zakupy;
+
+     -- 4. Wyświetl tylko najdroższy i najtańszy zakup -- lub dlatego ż nie mozna and bo jeden produkt nie ma dwoch cen
+     SELECT * FROM zakupy
+     WHERE cena = (SELECT MAX(cena) from zakupy)
+     OR cena = (SELECT MIN(cena) from zakupy)
+     ;
+
+     -- 5. Wyszukaj zakupy kosztujące więcej niż średnia
+     SELECT * FROM zakupy
+     WHERE cena > (SELECT AVG(cena) from zakupy);
+
+     -- 6. Przygotuj zapytanie które zwróci tabelę z dodatkową kolumną informującą
+     -- czy dany produkt jest droższy od średniej ceny wszystkich produktów
+     SELECT
+     id,
+     nazwa,
+     producent,
+     opis,
+     cena,
+     cena > (SELECT AVG(cena) from zakupy) AS czy_drozsze_od_sredniej
+     FROM zakupy;
