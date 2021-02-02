@@ -42,4 +42,5 @@ SELECT * FROM zakupy WHERE producent = 'PPHU Januszex' AND cena BETWEEN 1 AND 30
 
 UPDATE zakupy SET opis = 'Nie dla alkoholu!' WHERE opis LIKE '%Piwko%'; -- opis zawiera wyraz piwko
 
+
 DELETE FROM zakupy WHERE id = 4;
