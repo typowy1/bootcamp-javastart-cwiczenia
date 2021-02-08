@@ -95,7 +95,7 @@ public class TextAnalyzer {
 //                .replaceAll("\\)", "")
 //                .replaceAll(";", "")
 //                .replaceAll(":", "")
-//                .replaceAll("\\?", "") // przy znaku zapytania też taki zapis \\(
+//                .replaceAll("\\?", "") // przy znaku parametry też taki zapis \\(
 //                .replaceAll("\"", "") // przy cudzysłowiu taki zapis \"
 //                .replaceAll("-", "")
 //                .replaceAll("    ", " ") // 4 spacje na jedną, trim usunie

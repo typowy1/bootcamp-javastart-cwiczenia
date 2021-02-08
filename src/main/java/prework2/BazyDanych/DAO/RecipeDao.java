@@ -41,7 +41,7 @@ public class RecipeDao {
             throw new RuntimeException(e);
         }
 
-        // Metoda save() przyjmuje parametr typu Recipe. Na początku definiujemy szablon zapytania w języku SQL, które
+        // Metoda save() przyjmuje parametr typu Recipe. Na początku definiujemy szablon parametry w języku SQL, które
         // chcemy wykonać. Wykorzystuję metodę String.format(), która pozwoli uniknąć nieczytelnej konkatenacji,
     }
 

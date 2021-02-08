@@ -1,0 +1,60 @@
+https://javastart.pl/kurs/spring/spring-spring-jpa/lekcja/spring-zapytania-w-jpql
+https://javastart.pl/kurs/spring/spring-spring-jpa/lekcja/spring-zapytania-dynamiczne
+
+@Entity
+public class City implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String countryCode;
+    private String district;
+    private String name;
+    private int population;
+//... settery, gettery, konstruktor
+}
+
+ELECT
+
+Selekcja elementów jest podstawową czynnością, którą wykonujemy na bazie danych. Najprostsze zapytanie jakie możemy sobie wyobrazić w SQL wygląda następująco:
+
+SQL
+
+SELECT * FROM city
+1
+file_copy
+
+Zwracano ono wszystkie rekordy zapisane w tabeli city. Odpowiednik w języku JPQL wygląda bardzo podobnie:
+
+JPQL
+
+SELECT c FROM City c
+1
+file_copy
+
+Różnica polega na tym, że w JPQL konieczne jest posługiwanie się aliasem tabeli city w celu zwrócenia wyniku - musimy wskazać, co zwracamy i nie może to być wieloznacznik. Zwróć uwagę, że w JPQL w klauzuli FROM podajemy nazwę encji a nie tabeli i musi ona uwzględniać odpowiednią wielkość liter.
+
+Jeżeli założymy, że chcielibyśmy zwrócić np. tylko nazwy miast to w SQL możemy to zrobić poprzez wskazanie konkretnej kolumny:
+
+SQL
+
+SELECT Name FROM city
+1
+file_copy
+
+JPQL
+
+SELECT c.name FROM City c
+
+Jeżeli chcemy dokonać do zapytania pewne ograniczenia, czyli wybrać tylko te miasta, których populacja jest większa od miliona to zapytania wyglądają jak poniżej.
+
+SQL
+
+SELECT * FROM city WHERE Population > 1000000
+1
+file_copy
+
+JPQL
+
+SELECT c FROM City c WHERE c.population > 1000000
