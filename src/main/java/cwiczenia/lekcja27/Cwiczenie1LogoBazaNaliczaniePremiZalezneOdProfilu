@@ -1,0 +1,29 @@
+https://bootcamp.javastart.pl/konto/cwiczenie/1396
+
+Logo, baza i naliczanie premii zależne od profilu
+Treść zadania
+
+Wyobraź sobie następującą sytuację:
+
+Tworzysz aplikację do rozliczeń finansowych w Twojej firmie. Aplikacja znacząco ułatwia wyliczenia premii dla pracowników w zależności od różnych czynników.
+
+ 
+
+Jesteś dumny/(a) ze swojego dzieła i wspominasz o tym Twojemu znajomemu, który również prowadzi firmę. Jest zachwycony tym rozwiązaniem i też je chce u siebie. Po krótkich negocjacjach decydujecie się na wdrożenie. Problem polega na tym, że twoja aplikacja ma logo twojej firmy, no i dane też są dla Twoich pracowników.
+
+Masz dwie możliwości:
+
+    Kopiujesz kod źródłowy aplikacji i od teraz są to dwie aplikacje. Zmiany wprowadzone w Twojej wersji nie będą miały wpływu na aplikację znajomego. Trochę słabo
+    Tworzysz dodatkowy profil, który umożliwi korzystanie z tego samego kodu źródłowego, ale aplikacja będzie zmieniała logo firmy oraz łączyła się z inną bazą danych
+
+Oczywiście kusi Cię opcja pierwsza, ale rozsądek bierze górę i decydujesz się na podział aplikacji na profile.
+
+Po jakimś czasie dzwoni do Ciebie ten znajomy i prosi jeszcze o dodanie małej zmiany, "bo on zawsze daje min. 100zł bonusu, ale to chyba nie problem, nie?"
+
+Uwaga: Aplikacja dodaje dane testowe korzystając z klasy TestdataProvider, która działa tylko profilu "dev". Upewnij się, że uruchamiasz aplikację z tym profilem.
+
+Kod źródłowy Twojej aplikacji: http://git.javastart.pl/zadania-automat/liczenie-premii-spring
+
+P:\Projekty\Bootcamp java\Baza danych\lekcja27CwiczenieLogo, baza i naliczanie premii zależne od profilu
+http://git.javastart.pl/rozwiazania/spring_profile_logo_baza_liczenie_premii_rozwiazanie-14212saad
+https://www.youtube.com/watch?v=lCC3HPi1DDI&feature=emb_title
