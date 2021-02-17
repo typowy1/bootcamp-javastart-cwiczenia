@@ -1,0 +1,21 @@
+Konfiguracja liquibase i tylko aktualnie zatrudnieni
+Treść zadania
+
+Kod bazowy aplikacji: http://git.javastart.pl/zadania-automat/liczenie-premii-spring
+Cześć 1
+
+Masz do przerobienia aplikacje tak, żeby umożliwić przyszły rozwój i migracje. Aktualnie schemat bazy danych generowany jest przez Hibernate, co nie jest najlepszym pomysłem w przypadku gdy aplikacja ma być w przyszłości rozwijana.
+
+Twoim zadaniem jest:
+
+    podpięcie liquibase
+    przygotowanie skryptu migracyjnego, który stworzy startowy schemat bazy danych
+    zmianę konfiguracji tak, żeby w profilu "dev" aplikacja korzystała z bazy danych H2, a w "prod" z MySQL
+
+Po wprowadzeniu zmian uruchom aplikację w trybie prod i dodaj kilka przepracowanych godzin. Następnie uruchom aplikację ponownie i upewnij się, że dane nie zniknęły.
+Część 2
+
+Dodaj do aplikacji dodatkowe pole informujące czy pracownik nadal jest zatrudniony. W polu z wyborem pracownika w dodawaniu przepracowanych godzin powinni być wyświetlani tylko aktualnie zatrudnieni pracownicy.
+
+http://git.javastart.pl/rozwiazania/liquibase_konfiguracja_i_tylko_aktualnie_zatrudnieni
+P:\Projekty\Bootcamp java\Baza danych\lekcja27-liczenie-premii-spring
