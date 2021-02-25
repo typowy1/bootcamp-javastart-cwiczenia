@@ -1,0 +1,16 @@
+Wysyłanie zapytań z JavaScriptu
+Treść zadania
+
+Wyślij zapytania z przeglądarki do Twojej aplikacji napisanej w Springu. Przetestuj w ten sposób działanie wszystkich metod z backendu.
+
+Możesz to zrobić na kilka sposobów:
+
+    opierając się na fragmencie kodu zawartym w odpowiedzi: https://stackoverflow.com/a/51854096/1756721
+    korzystając z jQuery
+    w dowolny inny sposób, który znajdziesz w internecie (JavaScript cały czas się zmienia i powstaje sporo rozwiązań)
+
+Możesz w ten sposób wykorzystać przygotowane w poprzednim ćwiczeniu API w celu stworzenia prostej aplikacji do zarządzania listą zadań.
+
+http://git.javastart.pl/rozwiazania/rest-crud-lista-zadan-javascript-13441
+https://bootcamp.javastart.pl/konto/cwiczenie/1414
+P:\Projekty\Bootcamp java\lekcja28Cw2RestWysyłanieZapytanZJS
