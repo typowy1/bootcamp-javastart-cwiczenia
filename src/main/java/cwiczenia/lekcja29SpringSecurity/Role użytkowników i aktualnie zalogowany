@@ -1,0 +1,12 @@
+https://github.com/typowy1/security-konfig/tree/Role_u%C5%BCytkownik%C3%B3w_i_aktualnie_zalogowany
+http://git.javastart.pl/rozwiazania/spring_security_role_i_panel_admina
+https://bootcamp.javastart.pl/konto/cwiczenie/1429
+https://www.youtube.com/watch?v=KRVwUVdPca8&feature=emb_title
+
+Treść zadania
+
+Do aplikacji z poprzedniego ćwiczenia:
+
+    dodaj podstronę dostępną tylko dla administratora
+    administrator powinien mieć możliwość usuwania użytkowników
+    na liście użytkowników do usunięcia nie powinno być aktualnie zalogowanego administratora
