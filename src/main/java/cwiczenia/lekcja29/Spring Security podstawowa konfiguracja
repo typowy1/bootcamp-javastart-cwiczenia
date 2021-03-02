@@ -1,0 +1,13 @@
+https://bootcamp.javastart.pl/konto/cwiczenie/1430
+http://git.javastart.pl/zadania/spring_security_podstawowa_konfiguracja
+https://www.youtube.com/watch?v=Ro18kDrzypk&feature=emb_title
+
+Treść zadania
+
+Przygotuj prostą aplikację z wykorzystaniem Spring Security i Spring MVC.
+
+    Wszystkie strony oprócz strony głównej powinny wymagać logowania
+    Zdefiniuj własny formularz logowania, na którym wyświetlisz również obrazek (np logo ulubionej firmy szkoleniowej)
+    Zmień domyślne dane logowania, żeby nie trzeba było za każdym razem kopiować hasła generowanego z konsoli
+
+Spring Security Podstawowa konfiguracja

@@ -1,0 +1,34 @@
+https://bootcamp.javastart.pl/konto/zajecia/313
+https://javastart.pl/kurs/spring/spring-spring-security/lekcja/spring-konfiguracja-spring-security-w-spring-boot
+https://javastart.pl/kurs/spring/spring-spring-security/lekcja/spring-konfiguracja-formularza
+https://javastart.pl/kurs/spring/spring-spring-security/lekcja/spring-konfiguracja-uwierzytelnienia
+
+
+
+
+
+Korzystając z pliku application.properties możemy ustawić sporo właściwości związanych z bezpieczeństwem. Przykładowo jeśli chcesz zmienić nazwę domyślnego użytkownika oraz jego hasło, to możesz to zrobić dopisując dwie właściwości.
+
+application.properties
+
+spring.security.user.name=user1
+spring.security.user.password=pass1
+
+Domyślna metoda config wygląda następująco:
+
+protected void configure(HttpSecurity http) throws Exception {
+    http
+    .authorizeRequests()
+        .anyRequest().authenticated()
+    .and()
+        .formLogin()
+    .and()
+        .httpBasic();
+}
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/test?useSSL=false
+spring.datasource.username=root
+spring.datasource.password=admin
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.datasource.initialization-mode=always //bez tej wartości plik data.sql będzie zignorowany przy bazie innej niż h2
