@@ -1,0 +1,13 @@
+https://bootcamp.javastart.pl/konto/cwiczenie/1432
+http://git.javastart.pl/rozwiazania/spring_security_reset_hasla
+https://www.youtube.com/watch?v=u-oZBdqgnAE
+https://github.com/typowy1/security-konfig/tree/Resetowanie_has%C5%82a
+
+Rozwiń program z poprzedniego ćwiczenia o możliwość resetowania hasła.
+
+W tym celu:
+
+    dodaj do profilu użytkownika adres email
+    wysyłaj maila z linkiem do resetowania hasła
+
+Przykładowy proces resetu hasła przedstawia diagram poniżej.
