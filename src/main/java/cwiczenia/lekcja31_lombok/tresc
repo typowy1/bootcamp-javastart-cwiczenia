@@ -1,0 +1,12 @@
+Kursy walut
+Treść zadania
+
+Korzystając z https://fixer.io/, pobierz aktualne kursy walut i wyświetl wszystkie w stosunku do złotówki. API ogranicza możliwość podania bazowej waluty jako PLN do wersji premium. Zastosuj prostą matematykę, żeby obejść ten problem.
+
+Wynik wyświetl w postaci tabeli na stronie głównej.
+
+
+http://git.javastart.pl/rozwiazania/resttemplate_kursy_walut/src/master
+https://www.youtube.com/watch?v=LYo7mbffOrg
+https://bootcamp.javastart.pl/konto/cwiczenie/1446
+https://github.com/typowy1/lekcja31_lombok_cw_kursy_walut
